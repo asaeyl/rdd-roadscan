@@ -1,0 +1,12 @@
+# On Google Colab torch and torchvision are already installed - the other lines are enough there.
+torch
+torchvision
+ultralytics
+pandas
+numpy
+scikit-learn
+matplotlib
+pillow
+openpyxl
+kagglehub
+pytest

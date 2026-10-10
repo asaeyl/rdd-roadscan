@@ -1,0 +1,10 @@
+# big or temporary
+work/
+*_smoke/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.zip
+# secrets - NEVER commit
+.env
+*token*
