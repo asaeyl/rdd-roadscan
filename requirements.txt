@@ -2,6 +2,7 @@
 torch
 torchvision
 ultralytics
+ultralytics>=8.4
 pandas
 numpy
 scikit-learn
