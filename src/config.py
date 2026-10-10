@@ -12,14 +12,14 @@ DATA_DIR = PROJECT_ROOT / "data"
 EXPERIMENTS_DIR = PROJECT_ROOT / "experiments"
 
 # THE frozen split. Created once by scripts/make_split.py, committed to GitHub, read by every experiment.
-SPLIT_CSV = DATA_DIR / "splits_8000.csv"
+SPLIT_CSV = DATA_DIR / "splits_12000.csv"
 
 # Big temporary files (copied images, YOLO training logs). NOT committed to GitHub.
 WORK_DIR = Path(os.environ.get("RDD_WORK_DIR", PROJECT_ROOT / "work"))
 
 # ----------------------------------------------------------------------------- data
 SEED = 42                          # every random choice in the project uses this seed
-TARGET_IMAGES = 8000               # size of the balanced subset
+TARGET_IMAGES = 12000               # size of the balanced subset
 SHARE_WITHOUT_DAMAGE = 0.08        # about 8% of the subset = images with no damage at all
 FRAMES_PER_BLOCK = 50              # frames with nearby numbers are near-identical -> they stay together
 SPLIT_SHARES = {"train": 0.70, "val": 0.15, "test": 0.15}
