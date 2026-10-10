@@ -5,7 +5,7 @@ Question: which augmentations actually help road-damage detection, and which are
     python experiments/E3_augmentation/run.py --smoke
     python experiments/E3_augmentation/run.py --only no_mosaic,no_hsv
 
-Same split, model (yolov8n), image size, epochs and batch size as E1. ONE augmentation setting changes per run,
+Same split, model (yolo26n), image size, epochs and batch size as E1. ONE augmentation setting changes per run,
 compared with the default run (which is the E1 detector).
 """
 import sys
