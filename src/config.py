@@ -30,7 +30,7 @@ HAS_COLUMNS = ["has_" + name for name in DAMAGE_CLASSES]        # has_D00, has_D
 
 # ----------------------------------------------------------------------------- training (shared by all models)
 IMAGE_SIZE = 640                   # input size in pixels
-EPOCHS = 20                        # passes over the training images
+EPOCHS = 10                        # passes over the training images
 BATCH_SIZE = 16                    # images per step
 SAVE_LAST_WEIGHTS = True           # also keep last.pt (the final epoch), not only best.pt (best on validation)
 
@@ -43,8 +43,8 @@ IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
 
 # ----------------------------------------------------------------------------- detector (YOLO)
-YOLO_MODEL = "yolov8n.pt"          # small COCO-pretrained detector
-YOLO_TRAIN_EXTRA = {"close_mosaic": 5}       # settings used in EVERY YOLO run, so that runs stay comparable
+YOLO_MODEL = "yolo26n.pt"          # yolo change to 26
+YOLO_TRAIN_EXTRA = {"close_mosaic": 3}       # settings used in EVERY YOLO run, so that runs stay comparable
 
 # ----------------------------------------------------------------------------- timing
 CPU_TIMING_IMAGES = 30             # how many test images are used to measure CPU time per image
