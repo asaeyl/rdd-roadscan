@@ -6,7 +6,7 @@ Question: which augmentations actually help road-damage detection, and which are
     python experiments/E3_augmentation/run.py --only no_mosaic,no_hsv
 
 Same split, model (yolo26n), image size, epochs and batch size as E1. ONE augmentation setting changes per run,
-compared with the default run (which is the E1 detector).
+compared with the default run.
 """
 import sys
 from pathlib import Path
@@ -48,7 +48,7 @@ def main():
     rows = {}
     for run_name in chosen:
         change, extra, hypothesis = VARIANTS[run_name]
-        folder = get_or_train_run(setup, run_name, cfg.YOLO_MODEL, cfg.IMAGE_SIZE, extra=extra, same_as_e1=(run_name == "default"))
+        folder = get_or_train_run(setup, run_name, cfg.YOLO_MODEL, cfg.IMAGE_SIZE, extra=extra, same_as_e1=False)
         rows[run_name] = {"what changes": change, "our hypothesis": hypothesis, **measure_run(setup, folder, cfg.IMAGE_SIZE)}
         print(run_name, round(rows[run_name]["mAP50"], 3))
 
