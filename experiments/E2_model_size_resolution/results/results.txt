@@ -1,6 +1,6 @@
 E2 - Detector size and input resolution
 =======================================
-created: 2026-10-11 18:38
+created: 2026-10-11 19:37
 
 SETTINGS
   experiment: E2_model_size_resolution
@@ -12,11 +12,11 @@ SETTINGS
   batch size: 16
   smoke test: False
   training device: Tesla T4
-  runs: yolo26s_640
+  runs: yolo26s_960
 
 E2 SUMMARY
                model  image_size  mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40  params_millions  weights_MB  cpu_ms_total  cpu_ms_model_only  mAP50_per_CPU_second
-yolo26s_640  yolo26s         640  0.558     0.310      0.609   0.523     0.467     0.495     0.576     0.695            9.951      20.312       317.287            310.519                 1.759
+yolo26s_960  yolo26s         960  0.563     0.303      0.610   0.528     0.501     0.495     0.574     0.681            9.951      20.377       755.510            743.761                 0.745
 
 NOTES
   - Read the table as a trade-off: how much mAP does each extra millisecond of CPU time buy?
