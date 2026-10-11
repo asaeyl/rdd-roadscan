@@ -1,0 +1,25 @@
+E2 - Detector size and input resolution
+=======================================
+created: 2026-10-11 18:02
+
+SETTINGS
+  experiment: E2_model_size_resolution
+  split id (same in all experiments): 3e129a0ab7c1
+  images train/val/test: 7974/1720/1741
+  seed: 42
+  epochs: 10
+  image size: 640
+  batch size: 16
+  smoke test: False
+  training device: Tesla T4
+  runs: yolo26n_960
+
+E2 SUMMARY
+               model  image_size  mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40  params_millions  weights_MB  cpu_ms_total  cpu_ms_model_only  mAP50_per_CPU_second
+yolo26n_960  yolo26n         960  0.548     0.298      0.613   0.500     0.461     0.480     0.580     0.673            2.535       5.516       268.003            254.934                 2.046
+
+NOTES
+  - Read the table as a trade-off: how much mAP does each extra millisecond of CPU time buy?
+  - Look at per-class AP50 too: small objects (thin cracks, D00/D10) usually profit most from the higher resolution.
+  - CPU time = preprocess + model + postprocess, batch size 1, same machine for all runs.
+  - yolo26n_640 is trained again in E2 with the same recipe as the E1 detector.
