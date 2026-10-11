@@ -1,0 +1,62 @@
+E1 - Baseline classifier vs detector
+====================================
+created: 2026-10-11 17:07
+
+SETTINGS
+  experiment: E1_baseline_vs_detector
+  split id (same in all experiments): 3e129a0ab7c1
+  images train/val/test: 7974/1720/1741
+  seed: 42
+  epochs: 10
+  image size: 640
+  batch size: 16
+  smoke test: False
+  training device: Tesla T4
+  yolo_model: yolo26n.pt
+
+E1 SUMMARY
+                          AP_D00  AP_D10  AP_D20  AP_D40  mean_AP  macro_F1  params_millions  CPU_ms_per_image  box_mAP@0.5
+Prior (class share only)   0.530   0.392   0.308   0.195    0.356       NaN            0.000             0.000          NaN
+Baseline ResNet-18         0.903   0.910   0.903   0.883    0.900     0.816           11.179           455.026          NaN
+YOLO detector              0.904   0.903   0.874   0.877    0.889     0.799            2.535           107.123        0.526
+
+BASELINE PER CLASS
+         AP  precision  recall    F1  threshold  share_of_images
+D00   0.903      0.801   0.850 0.825      0.360            0.530
+D10   0.910      0.784   0.871 0.825      0.250            0.392
+D20   0.903      0.839   0.806 0.822      0.550            0.308
+D40   0.883      0.788   0.797 0.792      0.600            0.195
+macro 0.900      0.803   0.831 0.816      0.440            0.356
+
+YOLO IMAGE-LEVEL PER CLASS
+         AP  precision  recall    F1  threshold  share_of_images
+D00   0.904      0.774   0.878 0.822      0.070            0.530
+D10   0.903      0.790   0.862 0.824      0.070            0.392
+D20   0.874      0.780   0.772 0.776      0.080            0.308
+D40   0.877      0.794   0.750 0.772      0.210            0.195
+macro 0.889      0.784   0.816 0.799      0.107            0.356
+
+YOLO BOX METRICS
+             mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40
+YOLO (test)  0.526     0.292      0.600   0.493     0.437     0.464     0.542     0.661
+
+BASELINE TRAINING
+   epoch  train_loss  val_mean_AP
+0      1       0.646        0.815
+1      2       0.517        0.866
+2      3       0.451        0.862
+3      4       0.389        0.872
+4      5       0.329        0.890
+5      6       0.256        0.891
+6      7       0.192        0.892
+7      8       0.148        0.895
+8      9       0.113        0.895
+9     10       0.105        0.898
+
+NOTES
+  - Mean AP difference (YOLO - baseline) on 'is damage type X in this image?': -0.011
+  - If this difference is small, localisation adds little for the yes/no question; its value is then in what only boxes give:
+  - box size (severity), number of instances, and crops for the duplicate finder.
+  - Cost: baseline 455 ms vs YOLO 107 ms per image on CPU; 11.2 M vs 2.5 M parameters; YOLO also needs box annotations.
+  - YOLO image-level score = highest confidence among the boxes of that damage type (0 if none).
+  - Thresholds for both models were chosen on the validation split, never on test.

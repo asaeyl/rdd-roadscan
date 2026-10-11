@@ -1,0 +1,19 @@
+{
+  "model": "yolo26n.pt",
+  "classes": [
+    "D00",
+    "D10",
+    "D20",
+    "D40"
+  ],
+  "image_size": 640,
+  "image_level_thresholds": {
+    "D00": 0.07,
+    "D10": 0.07,
+    "D20": 0.08,
+    "D40": 0.20999999999999996
+  },
+  "seed": 42,
+  "split_id": "3e129a0ab7c1",
+  "epochs": 10
+}
