@@ -24,7 +24,7 @@ NAME = "E2_model_size_resolution"
 
 # run name: (starting weights, image size, same recipe as the E1 YOLO run?)
 RUNS = {
-    "yolo26n_640": ("yolo26n.pt", 640, True),      # = the E1 detector (copied, not trained again)
+    "yolo26n_640": ("yolo26n.pt", 640, False),      # trained again inside E2
     "yolo26n_960": ("yolo26n.pt", 960, False),
     "yolo26s_640": ("yolo26s.pt", 640, False),
     "yolo26s_960": ("yolo26s.pt", 960, False),
@@ -53,7 +53,7 @@ def main():
     notes = ["Read the table as a trade-off: how much mAP does each extra millisecond of CPU time buy?",
              "Look at per-class AP50 too: small objects (thin cracks, D00/D10) usually profit most from the higher resolution.",
              "CPU time = preprocess + model + postprocess, batch size 1, same machine for all runs.",
-             "yolo26n_640 is the E1 detector (weights copied, same recipe)."]
+             "yolo26n_640 is trained again in E2 with the same recipe as the E1 detector."]
     xlsx, txt = save_results(setup.results_dir, "E2 - Detector size and input resolution", {"E2 summary": table},
                              common_settings(setup, runs=",".join(chosen)), notes)
     print(table.round(3)); print("saved:", xlsx, "and", txt)
