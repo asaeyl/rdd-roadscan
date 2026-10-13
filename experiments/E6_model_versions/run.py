@@ -1,4 +1,4 @@
-"""E6 - Compare YOLO generations (v5, v8, v10, yolo26).
+"""E6 - Compare YOLO generations (v5, v8, v10, 11, 26).
 
 Question: which YOLO generation gives the best accuracy vs CPU-speed trade-off on road damage?
 
@@ -6,8 +6,8 @@ Question: which YOLO generation gives the best accuracy vs CPU-speed trade-off o
     python experiments/E6_model_versions/run.py --smoke
     python experiments/E6_model_versions/run.py --only yolov8n
 
-Same split, model size (nano), image size, epochs, batch size and augmentation as E1.
-ONLY the model generation changes.
+Same split, model size (nano), image size, epochs, batch size and augmentation settings as E1.
+ONLY the model generation changes (architecture, head, loss, and Ultralytics' default optimizer choice come with the generation).
 """
 import sys
 from pathlib import Path
@@ -24,19 +24,22 @@ from src.yolo_runs import get_or_train_run, measure_run
 NAME = "E6_model_versions"
 
 # run name: (starting weights, image size, same recipe as the E1 YOLO run?)
-# If your Ultralytics version uses different filenames (e.g. yolov5nu.pt),
-# change the strings below - the column "model" in the results will follow them.
+# yolov5nu.pt = YOLOv5 as shipped by Ultralytics ("u" = anchor-free head, not the original 2020 YOLOv5 design).
+# If a file name is not found by your Ultralytics version, change the string here - the "model" column in the results follows it.
 RUNS = {
     "yolov5n":  ("yolov5nu.pt", cfg.IMAGE_SIZE, False),
     "yolov8n":  ("yolov8n.pt",  cfg.IMAGE_SIZE, False),
-    "yolov10n": ("yolov10n.pt", cfg.IMAGE_SIZE, False),
-    "yolo26n":  ("yolo26n.pt",  cfg.IMAGE_SIZE, False),
+    "yolov10n": ("yolov10n.pt", cfg.IMAGE_SIZE, False),    # NMS-free (end-to-end)
+    "yolo11n":  ("yolo11n.pt",  cfg.IMAGE_SIZE, False),
+    "yolo26n":  ("yolo26n.pt",  cfg.IMAGE_SIZE, False),    # NMS-free (end-to-end); same recipe as the E1 detector, trained again here
 }
 
 
 def main():
     setup = start_experiment(NAME, extra_args={"--only": {"default": "", "help": "comma-separated run names"}})
     chosen = [r for r in RUNS if not setup.args.only or r in setup.args.only.split(",")]
+    if not chosen:
+        sys.exit(f"--only must name runs from {list(RUNS)}; got {setup.args.only!r}")
 
     rows = {}
     for run_name in chosen:
@@ -73,11 +76,15 @@ def main():
     )
 
     notes = [
-        "One run per YOLO generation, nano size, same image size, epochs, batch and augmentation as E1.",
+        "One run per YOLO generation, nano size, same image size, epochs, batch and augmentation settings as E1.",
         "Read the table as a trade-off: which generation buys the most mAP for a given CPU cost?",
         "Look at per-class AP50 too: newer generations may help thin cracks (D00/D10) more than potholes (D40).",
-        "CPU time = preprocess + model + postprocess, batch size 1, same machine for all runs.",
-        "One run per generation is weak evidence: differences below ~0.01 mAP may be noise.",
+        "CPU time = preprocess + model + postprocess, batch size 1, same machine for all runs. "
+        "YOLOv10 and YOLO26 are NMS-free (their postprocess time is near zero); v5u/v8/11 run NMS - the total includes it.",
+        "Each model starts from its own COCO-pretrained weights. 'v5' is Ultralytics' YOLOv5u (anchor-free head).",
+        "Ultralytics' default optimizer rule ('auto') may pick a different optimizer per generation: check args.yaml in each weights folder and report it.",
+        "params_millions: end-to-end models (v10, 26) carry an extra training-only head unless the model is fused before counting - see src/detector.py model_size.",
+        "One run per generation is weak evidence: differences below ~0.01 mAP may be noise (compare with the E1 vs E2 retrain of the same model).",
     ]
     xlsx, txt = save_results(
         setup.results_dir,
