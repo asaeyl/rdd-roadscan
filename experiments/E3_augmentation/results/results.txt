@@ -1,6 +1,6 @@
 E3 - Augmentation settings
 ==========================
-created: 2026-10-13 14:08
+created: 2026-10-13 14:42
 
 SETTINGS
   experiment: E3_augmentation
@@ -12,12 +12,12 @@ SETTINGS
   batch size: 16
   smoke test: False
   training device: Tesla T4
-  runs: default,no_fliplr
+  runs: default,flipud_on
 
 E3 SUMMARY
                       what changes                           our hypothesis  mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40  params_millions  weights_MB  cpu_ms_total  cpu_ms_model_only  delta_mAP50_vs_default  delta_AP50_D00  delta_AP50_D10  delta_AP50_D20  delta_AP50_D40
-default    nothing (YOLO defaults)              reference run = E1 detector  0.523     0.293      0.602   0.483     0.442     0.449     0.541     0.660            2.535       5.450        98.621             93.283                   0.000           0.000           0.000           0.000           0.000
-no_fliplr      horizontal flip off  left-right mirror is realistic (traf...  0.536     0.299      0.641   0.482     0.436     0.472     0.558     0.678            2.535       5.450        96.825             91.598                   0.013          -0.007           0.023           0.017           0.018
+default    nothing (YOLO defaults)              reference run = E1 detector  0.523     0.293      0.602   0.483     0.442     0.449     0.541     0.660            2.535       5.450        96.875             91.634                   0.000           0.000           0.000           0.000           0.000
+flipud_on         vertical flip ON  UNREALISTIC: the road would be upsid...  0.522     0.288      0.620   0.478     0.426     0.452     0.542     0.665            2.535       5.450       101.071             95.870                  -0.002          -0.016           0.003           0.001           0.005
 
 NOTES
   - Each row changes ONE thing relative to 'default'. A positive delta means that the change helped.
