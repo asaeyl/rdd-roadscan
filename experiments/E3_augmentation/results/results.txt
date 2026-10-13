@@ -1,6 +1,6 @@
 E3 - Augmentation settings
 ==========================
-created: 2026-10-13 15:16
+created: 2026-10-13 15:20
 
 SETTINGS
   experiment: E3_augmentation
@@ -12,12 +12,16 @@ SETTINGS
   batch size: 16
   smoke test: False
   training device: Tesla T4
-  runs: default,rotate_30
+  runs: default,no_mosaic,no_hsv,no_fliplr,flipud_on,rotate_30
 
 E3 SUMMARY
-                        what changes                           our hypothesis  mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40  params_millions  weights_MB  cpu_ms_total  cpu_ms_model_only  delta_mAP50_vs_default  delta_AP50_D00  delta_AP50_D10  delta_AP50_D20  delta_AP50_D40
-default      nothing (YOLO defaults)              reference run = E1 detector  0.523     0.293      0.602   0.483     0.442     0.449     0.541     0.660            2.535       5.450        96.736             91.463                   0.000           0.000           0.000           0.000           0.000
-rotate_30  rotation up to 30 degrees  UNREALISTIC for a dashcam: the horiz...  0.474     0.237      0.560   0.444     0.387     0.391     0.500     0.617            2.535       5.450       112.263            106.047                  -0.050          -0.055          -0.059          -0.041          -0.043
+                                      what changes                           our hypothesis  mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40  params_millions  weights_MB  cpu_ms_total  cpu_ms_model_only  delta_mAP50_vs_default  delta_AP50_D00  delta_AP50_D10  delta_AP50_D20  delta_AP50_D40
+default                    nothing (YOLO defaults)              reference run = E1 detector  0.523     0.293      0.602   0.483     0.442     0.449     0.541     0.660            2.535       5.450        98.940             93.805                   0.000           0.000           0.000           0.000           0.000
+no_mosaic                               mosaic off  mosaic glues 4 photos together: not ...  0.521     0.291      0.608   0.477     0.434     0.448     0.547     0.653            2.535       5.450       142.625            134.662                  -0.003          -0.008          -0.002           0.006          -0.006
+no_hsv     colour jitter off (hue/saturation/va...  brightness/saturation changes are re...  0.532     0.294      0.632   0.473     0.440     0.466     0.556     0.666            2.535       5.450       115.370            108.434                   0.009          -0.002           0.016           0.015           0.007
+no_fliplr                      horizontal flip off  left-right mirror is realistic (traf...  0.536     0.299      0.641   0.482     0.436     0.472     0.558     0.678            2.535       5.450       114.009            108.850                   0.013          -0.007           0.023           0.017           0.018
+flipud_on                         vertical flip ON  UNREALISTIC: the road would be upsid...  0.522     0.288      0.620   0.478     0.426     0.452     0.542     0.665            2.535       5.450       104.684             99.117                  -0.002          -0.016           0.003           0.001           0.005
+rotate_30                rotation up to 30 degrees  UNREALISTIC for a dashcam: the horiz...  0.474     0.237      0.560   0.444     0.387     0.391     0.500     0.617            2.535       5.450       131.915            124.617                  -0.050          -0.055          -0.059          -0.041          -0.043
 
 NOTES
   - Each row changes ONE thing relative to 'default'. A positive delta means that the change helped.
