@@ -1,0 +1,69 @@
+CSV      : /content/rdd-roadscan/data/splits_12000.csv
+Rows     : 11435
+Columns  : ['country', 'frame_number', 'name', 'original_split', 'split', 'n_boxes', 'has_no_damage', 'count_D00', 'count_D10', 'count_D20', 'count_D40', 'has_D00', 'has_D10', 'has_D20', 'has_D40']
+Detected : split='split'  label=None  path=None  name='name'
+           count_cols={'D00': 'count_D00', 'D10': 'count_D10', 'D20': 'count_D20', 'D40': 'count_D40'}
+           has_cols={'D00': 'has_D00', 'D10': 'has_D10', 'D20': 'has_D20', 'D40': 'has_D40'}
+
+--- images_per_split ---
+       images
+split        
+test     1741
+train    7974
+val      1720
+
+--- class_image_counts ---
+       images
+class        
+D00      6271
+D10      4469
+D20      3290
+D40      2154
+
+--- per_split_crosstab ---
+        D00   D10   D20   D40
+split                        
+test    923   683   536   340
+train  4423  3111  2283  1481
+val     925   675   471   333
+
+--- class_box_counts ---
+       boxes
+class       
+D00    12519
+D10     6439
+D20     3964
+D40     2782
+
+--- n_boxes_stats ---
+        count      mean       std  min  25%  50%  75%   max
+split                                                      
+test   1741.0  2.236646  2.266511  0.0  1.0  2.0  3.0  29.0
+train  7974.0  2.256960  2.456865  0.0  1.0  2.0  3.0  44.0
+val    1720.0  2.216860  2.456380  0.0  1.0  1.0  3.0  29.0
+
+--- original_vs_new_split ---
+split           test  train   val
+original_split                   
+test             251   1152   262
+train           1226   5647  1170
+val              264   1175   288
+
+--- has_no_damage_per_split ---
+has_no_damage     0    1
+split                   
+test           1668   73
+train          7586  388
+val            1628   92
+
+--- country_per_split ---
+split            test  train  val
+country                          
+China_Drone       263   1187  264
+China_MotorBike   274   1192  249
+Czech             175    798  176
+India             258   1199  257
+Japan             257   1200  257
+Norway            257   1198  259
+United_States     257   1200  258
+
