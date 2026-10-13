@@ -1,0 +1,26 @@
+E3 - Augmentation settings
+==========================
+created: 2026-10-13 13:03
+
+SETTINGS
+  experiment: E3_augmentation
+  split id (same in all experiments): 3e129a0ab7c1
+  images train/val/test: 7974/1720/1741
+  seed: 42
+  epochs: 10
+  image size: 640
+  batch size: 16
+  smoke test: False
+  training device: Tesla T4
+  runs: default,no_mosaic
+
+E3 SUMMARY
+                      what changes                           our hypothesis  mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40  params_millions  weights_MB  cpu_ms_total  cpu_ms_model_only  delta_mAP50_vs_default  delta_AP50_D00  delta_AP50_D10  delta_AP50_D20  delta_AP50_D40
+default    nothing (YOLO defaults)              reference run = E1 detector  0.523     0.293      0.602   0.483     0.442     0.449     0.541     0.660            2.535       5.450       134.483            126.702                   0.000           0.000           0.000           0.000           0.000
+no_mosaic               mosaic off  mosaic glues 4 photos together: not ...  0.521     0.291      0.608   0.477     0.434     0.448     0.547     0.653            2.535       5.450        99.561             94.289                  -0.003          -0.008          -0.002           0.006          -0.006
+
+NOTES
+  - Each row changes ONE thing relative to 'default'. A positive delta means that the change helped.
+  - With one run per setting, differences of about 0.01 mAP may be noise (seed, run-to-run variation): say so in the report.
+  - The 'our hypothesis' column is a hypothesis written BEFORE training - confirm or reject it with the numbers.
+  - A setting can be physically unrealistic and still help (regularisation); report what you measured.
