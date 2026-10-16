@@ -1,0 +1,29 @@
+E6 - YOLO generations
+=====================
+created: 2026-10-16 14:13
+
+SETTINGS
+  experiment: E6_model_versions
+  split id (same in all experiments): 3e129a0ab7c1
+  images train/val/test: 7974/1720/1741
+  seed: 42
+  epochs: 10
+  image size: 640
+  batch size: 16
+  smoke test: False
+  training device: Tesla T4
+  runs: yolov5n
+
+E6 SUMMARY
+            model  image_size  mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40  params_millions  weights_MB  cpu_ms_total  cpu_ms_model_only  mAP50_per_CPU_second
+yolov5n  yolov5nu         640  0.443     0.234      0.528   0.432     0.345     0.361     0.486     0.580            2.636       5.524       117.266            110.952                 3.779
+
+NOTES
+  - One run per YOLO generation, nano size, same image size, epochs, batch and augmentation settings as E1.
+  - Read the table as a trade-off: which generation buys the most mAP for a given CPU cost?
+  - Look at per-class AP50 too: newer generations may help thin cracks (D00/D10) more than potholes (D40).
+  - CPU time = preprocess + model + postprocess, batch size 1, same machine for all runs. YOLOv10 and YOLO26 are NMS-free (their postprocess time is near zero); v5u/v8/11 run NMS - the total includes it.
+  - Each model starts from its own COCO-pretrained weights. 'v5' is Ultralytics' YOLOv5u (anchor-free head).
+  - Ultralytics' default optimizer rule ('auto') may pick a different optimizer per generation: check args.yaml in each weights folder and report it.
+  - params_millions: end-to-end models (v10, 26) carry an extra training-only head unless the model is fused before counting - see src/detector.py model_size.
+  - One run per generation is weak evidence: differences below ~0.01 mAP may be noise (compare with the E1 vs E2 retrain of the same model).
