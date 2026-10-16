@@ -1,6 +1,6 @@
 E6 - YOLO generations
 =====================
-created: 2026-10-16 16:22
+created: 2026-10-16 16:25
 
 SETTINGS
   experiment: E6_model_versions
@@ -12,11 +12,15 @@ SETTINGS
   batch size: 16
   smoke test: False
   training device: Tesla T4
-  runs: yolo26n
+  runs: yolov5n,yolov8n,yolov10n,yolo11n,yolo26n
 
 E6 SUMMARY
-           model  image_size  mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40  params_millions  weights_MB  cpu_ms_total  cpu_ms_model_only  mAP50_per_CPU_second
-yolo26n  yolo26n         640  0.523     0.293      0.602   0.483     0.442     0.449     0.541     0.660            2.535       5.450       117.182            111.191                 4.464
+             model  image_size  mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40  params_millions  weights_MB  cpu_ms_total  cpu_ms_model_only  mAP50_per_CPU_second
+yolov5n   yolov5nu         640  0.443     0.234      0.528   0.432     0.345     0.361     0.486     0.580            2.636       5.524       124.035            117.849                 3.572
+yolov8n    yolov8n         640  0.459     0.243      0.533   0.445     0.370     0.408     0.489     0.569            3.139       6.503       136.668            130.840                 3.359
+yolov10n  yolov10n         640  0.479     0.264      0.550   0.462     0.378     0.412     0.513     0.613            2.739       5.816       129.458            123.288                 3.700
+yolo11n    yolo11n         640  0.482     0.260      0.558   0.459     0.388     0.414     0.510     0.615            2.606       5.502       144.838            137.032                 3.325
+yolo26n    yolo26n         640  0.523     0.293      0.602   0.483     0.442     0.449     0.541     0.660            2.535       5.450       137.314            129.221                 3.810
 
 NOTES
   - One run per YOLO generation, nano size, same image size, epochs, batch and augmentation settings as E1.
