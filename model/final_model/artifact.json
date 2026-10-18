@@ -1,0 +1,33 @@
+{
+  "model": "yolo26s.pt",
+  "source": "trained here: yolo26s.pt, 640 px, 20 epochs",
+  "image_size": 640,
+  "epochs": 20,
+  "optimizer": "auto",
+  "classes": [
+    "D00",
+    "D10",
+    "D20",
+    "D40"
+  ],
+  "confidence_thresholds": {
+    "D00": 0.25,
+    "D10": 0.28,
+    "D20": 0.24,
+    "D40": 0.13
+  },
+  "beta_per_class": {
+    "D00": 1.0,
+    "D10": 1.0,
+    "D20": 1.0,
+    "D40": 2.0
+  },
+  "thresholds_chosen_on": "validation split",
+  "iou_threshold": 0.5,
+  "test_mAP50": 0.5907030866424267,
+  "test_mAP50-95": 0.33589035452844695,
+  "split_id": "3e129a0ab7c1",
+  "seed": 42,
+  "smoke_test": false,
+  "created": "2026-10-18 15:32"
+}

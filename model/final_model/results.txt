@@ -1,0 +1,39 @@
+Final model - yolo26s, 640 px
+=============================
+created: 2026-10-18 15:32
+
+SETTINGS
+  model: yolo26s.pt
+  source: trained here: yolo26s.pt, 640 px, 20 epochs
+  image_size: 640
+  epochs: 20
+  optimizer: auto
+  classes: ['D00', 'D10', 'D20', 'D40']
+  beta_per_class: {'D00': 1.0, 'D10': 1.0, 'D20': 1.0, 'D40': 2.0}
+  thresholds_chosen_on: validation split
+  iou_threshold: 0.5
+  test_mAP50: 0.5907030866424267
+  test_mAP50-95: 0.33589035452844695
+  split_id: 3e129a0ab7c1
+  seed: 42
+  smoke_test: False
+  created: 2026-10-18 15:32
+  confidence_thresholds: {'D00': 0.25, 'D10': 0.28, 'D20': 0.24, 'D40': 0.13}
+
+TEST METRICS AT THE CHOSEN THRESHOLDS
+       threshold  precision  recall    F1       TP       FP       FN  real_boxes
+D00        0.250      0.603   0.429 0.501  780.000  513.000 1040.000    1820.000
+D10        0.280      0.632   0.454 0.528  449.000  261.000  541.000     990.000
+D20        0.240      0.636   0.530 0.578  341.000  195.000  303.000     644.000
+D40        0.130      0.515   0.718 0.600  316.000  298.000  124.000     440.000
+macro        NaN      0.597   0.532 0.552 1886.000 1267.000 2008.000    3894.000
+
+TEST BOX METRICS (MAP)
+             mAP50  mAP50-95  precision  recall  AP50_D00  AP50_D10  AP50_D20  AP50_D40
+final model  0.591     0.336      0.620   0.556     0.502     0.528     0.595     0.737
+
+NOTES
+  - Trained on the TRAIN split only. Thresholds were chosen on the VALIDATION split; the TEST split was used once, for this table.
+  - Cost-aware choice: F-beta per damage type; beta=2 for potholes (D40) means recall counts more than precision.
+  - Precision/recall/F1 below are at the chosen thresholds (IoU >= 0.5); mAP is threshold-free.
+  - best.pt = epoch with the best validation score; last.pt = final epoch. artifact.json belongs to best.pt.
