@@ -4,15 +4,22 @@ Shows what each augmentation variant in run.py actually looks like on a real
 road-damage image, so the 'our hypothesis' column has a picture to go with it.
 
     python experiments/E3_augmentation/show_augmentations.py
-    python experiments/E3_augmentation/show_augmentations.py --images-dir data/raw
+    python experiments/E3_augmentation/show_augmentations.py --images-dir /content/rdd-roadscan/work/yolo/images
     python experiments/E3_augmentation/show_augmentations.py --seed 1
+
+Where the photos come from (first one that works):
+  1. --images-dir            any folder that contains the .jpg files (searched recursively)
+  2. work/yolo/images        the YOLO folder that E1/E2/E3 build (exists after any experiment ran)
+  3. the RDD2022 dataset     RDD_DATA_DIR if set, otherwise the Kaggle download (the same one make_split.py uses)
+The split CSV only holds image NAMES (e.g. Japan_000734), not paths - the names are matched to the files found above.
+Only images that contain damage are used; a pothole image (D40) is preferred as the main example.
 
 For each variant in VARIANTS it writes one PNG into
     experiments/E3_augmentation/aug_preview/<variant>.png
 
 The pictures are produced with OpenCV and mirror the *visual meaning* of the
 Ultralytics settings (mosaic, hsv_*, fliplr, flipud, degrees). They are an
-illustration, not the exact RNG of Ultralytics training.
+illustration, not the exact RNG of Ultralytics training (scale / translate are not shown).
 """
 import argparse
 import sys
@@ -28,13 +35,13 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-try:
-    from src import config as cfg
-    DEFAULT_CSV = Path(cfg.SPLIT_CSV)
-    IMG_SIZE = int(cfg.IMAGE_SIZE)
-except Exception:
-    DEFAULT_CSV = Path("data/splits_12000.csv")
-    IMG_SIZE = 640
+from src import config as cfg
+from src import data
+
+DEFAULT_CSV = Path(cfg.SPLIT_CSV)
+IMG_SIZE = int(cfg.IMAGE_SIZE)
+IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png"}
+GREY = (114, 114, 114)                      # the padding colour Ultralytics uses
 
 HERE = Path(__file__).resolve().parent
 DEFAULT_OUT = HERE / "aug_preview"
@@ -56,59 +63,84 @@ def parse_args():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default=str(DEFAULT_CSV))
     ap.add_argument("--images-dir", default=None,
-                    help="folder with the JPEGs; common places tried otherwise")
+                    help="folder with the photos (searched recursively); default: work/yolo/images, then the RDD2022 dataset")
     ap.add_argument("--out-dir", default=str(DEFAULT_OUT))
     ap.add_argument("--seed", type=int, default=0)
     return ap.parse_args()
 
 
-# ---------------------------------------------------------------- image loading
+# ---------------------------------------------------------------- finding the photos
+
+def index_folder(folder):
+    """{file name without extension: path} for every photo below `folder`."""
+    return {p.stem: p for p in Path(folder).rglob("*") if p.suffix.lower() in IMAGE_SUFFIXES}
+
+
+def build_lookup(images_dir):
+    """Find a folder with photos. Returns (index, description of where they were found)."""
+    candidates = []
+    if images_dir:
+        candidates.append((f"--images-dir {images_dir}", Path(images_dir)))
+    candidates.append(("YOLO folder built by the experiments", cfg.WORK_DIR / "yolo" / "images"))
+
+    for label, folder in candidates:
+        if folder.is_dir():
+            index = index_folder(folder)
+            if index:
+                return index, f"{label} ({len(index)} photos)"
+            print(f"  (no photos inside {folder})")
+        else:
+            print(f"  (folder not found: {folder})")
+
+    print("  -> using the RDD2022 dataset (RDD_DATA_DIR, or the Kaggle download: this can take a few minutes the first time)")
+    dataset_dir = data.get_dataset_dir()
+    index = {p.stem: p for p in Path(dataset_dir).glob("*/images/*") if p.suffix.lower() in IMAGE_SUFFIXES}
+    return index, f"RDD2022 dataset {dataset_dir} ({len(index)} photos)"
+
 
 def find_images(csv_path, images_dir, n=4, seed=0):
     df = pd.read_csv(csv_path)
-    name_col = next((c for c in ("image_path", "path", "name", "filename")
-                     if c in df.columns), None)
+    name_col = next((c for c in ("image_path", "path", "name", "filename") if c in df.columns), None)
     if name_col is None:
-        raise SystemExit(f"No image path column in {csv_path}")
+        raise SystemExit(f"No image name column in {csv_path} (columns: {list(df.columns)})")
 
-    names = df[name_col].dropna().astype(str).sample(frac=1.0, random_state=seed).tolist()
+    df = df.assign(stem=df[name_col].astype(str).map(lambda v: Path(v).stem))
+    if "n_boxes" in df.columns:
+        df = df[df["n_boxes"] > 0]                                        # only photos that show damage
+    df = df.sample(frac=1.0, random_state=seed)
+    if "has_D40" in df.columns:                                           # pothole photos first: easiest to judge
+        df = pd.concat([df[df["has_D40"] == 1], df[df["has_D40"] != 1]])
 
-    search = []
-    if images_dir:
-        search.append(Path(images_dir))
-    search += [Path("data"), Path("data/raw"), Path("data/images"),
-               Path("data/RDD2022"), Path("data/rdd")]
-
-    found = []
-    for name in names:
-        p = Path(name)
-        for d in search:
-            for c in (d / name, d / p.name):
-                if c.exists():
-                    found.append(c)
-                    break
-            else:
-                continue
-            break
-        if len(found) >= n:
-            break
-
+    index, where = build_lookup(images_dir)
+    print("Photos found in:", where)
+    found = [index[s] for s in df["stem"] if s in index][:n]
     if not found:
-        raise SystemExit("No images found. Pass --images-dir /path/to/jpgs")
+        examples = list(df["stem"].head(3))
+        raise SystemExit(
+            f"None of the {len(df)} photos named in {csv_path} (e.g. {examples}) exist in: {where}.\n"
+            "Pass the folder that really contains them, e.g. --images-dir /content/rdd-roadscan/work/yolo/images "
+            "or the RDD_SPLIT folder of the Kaggle download.")
     return found
 
 
 def load_image(path, size=IMG_SIZE):
+    """Read a photo and fit it into a size x size square WITHOUT stretching (grey padding, like YOLO's letterbox)."""
     im = cv2.imread(str(path))
     if im is None:
         return None
-    return cv2.resize(im, (size, size), interpolation=cv2.INTER_AREA)
+    h, w = im.shape[:2]
+    scale = size / max(h, w)
+    resized = cv2.resize(im, (max(1, round(w * scale)), max(1, round(h * scale))), interpolation=cv2.INTER_AREA)
+    canvas = np.full((size, size, 3), GREY, dtype=np.uint8)
+    top, left = (size - resized.shape[0]) // 2, (size - resized.shape[1]) // 2
+    canvas[top:top + resized.shape[0], left:left + resized.shape[1]] = resized
+    return canvas
 
 
 # ---------------------------------------------------------------- augmentations
 
 def hsv_jitter(im, rng, h=0.015, s=0.7, v=0.4):
-    """Mirror of ultralytics.data.augment.Albumentations HSV branch."""
+    """Mirror of Ultralytics' RandomHSV (the hsv_h / hsv_s / hsv_v settings)."""
     gains = rng.uniform(-1, 1, 3) * np.array([h, s, v]) + 1
     hue, sat, val = cv2.split(cv2.cvtColor(im, cv2.COLOR_BGR2HSV))
     x = np.arange(0, 256, dtype=np.float32)
@@ -120,10 +152,11 @@ def hsv_jitter(im, rng, h=0.015, s=0.7, v=0.4):
 
 
 def rotate(im, deg):
+    """Rotate around the centre; the corners are filled with grey like in YOLO training."""
     h, w = im.shape[:2]
     M = cv2.getRotationMatrix2D((w / 2, h / 2), deg, 1.0)
-    return cv2.warpAffine(im, M, (w, h),
-                          flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
+    return cv2.warpAffine(im, M, (w, h), flags=cv2.INTER_LINEAR,
+                          borderMode=cv2.BORDER_CONSTANT, borderValue=GREY)
 
 
 def mosaic4(images, size=IMG_SIZE):
@@ -203,7 +236,7 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
 
     paths = find_images(args.csv, args.images_dir, n=4, seed=args.seed)
-    print("Sample images:")
+    print("Sample images (the first one is used for the single-image panels):")
     for p in paths:
         print("  ", p)
 
