@@ -1,0 +1,85 @@
+E4 - Final model on our local photos
+====================================
+created: 2026-10-19 09:10
+
+SETTINGS
+  experiment: E4_local_photos
+  final model: yolo26s.pt
+  image size: 640
+  thresholds: {'D00': 0.25, 'D10': 0.28, 'D20': 0.24, 'D40': 0.13}
+  photos: 28
+  labels used: True
+  pictures written to: /content/e4_output
+  final model split id: 3e129a0ab7c1
+  real boxes in local photos: 49
+
+PER PHOTO
+                 photo                               status                    detections  n_detections  real_boxes  found  false_alarms  missed
+0    Saudi_000001.jpeg                               MISSED                       nothing             0           2      0             0       2
+1   Saudi_0000010.jpeg                               MISSED                       nothing             0           3      0             0       3
+2   Saudi_0000011.jpeg  partly (found 0, missed 1, false 3)  D00 0.56, D10 0.40, D00 0.27             3           1      0             3       1
+3   Saudi_0000012.jpeg                               MISSED                       nothing             0           1      0             0       1
+4   Saudi_0000013.jpeg                   correct: no damage                       nothing             0           0      0             0       0
+5   Saudi_0000014.jpeg  partly (found 0, missed 1, false 3)  D10 0.54, D10 0.31, D00 0.29             3           1      0             3       1
+6   Saudi_0000015.jpeg  partly (found 0, missed 3, false 1)                      D10 0.38             1           3      0             1       3
+7   Saudi_0000016.jpeg  partly (found 0, missed 3, false 1)                      D00 0.37             1           3      0             1       3
+8   Saudi_0000017.jpeg                               MISSED                       nothing             0           2      0             0       2
+9   Saudi_0000018.jpeg                               MISSED                       nothing             0           1      0             0       1
+10  Saudi_0000019.jpeg  partly (found 0, missed 1, false 1)                      D40 0.16             1           1      0             1       1
+11   Saudi_000002.jpeg                               MISSED                       nothing             0           1      0             0       1
+12  Saudi_0000020.jpeg  partly (found 0, missed 2, false 3)  D10 0.36, D00 0.31, D10 0.28             3           2      0             3       2
+13  Saudi_0000021.jpeg                               MISSED                       nothing             0           1      0             0       1
+14  Saudi_0000022.jpeg                               MISSED                       nothing             0           3      0             0       3
+15  Saudi_0000023.jpeg                               MISSED                       nothing             0           2      0             0       2
+16  Saudi_0000024.jpeg  partly (found 0, missed 2, false 1)                      D20 0.36             1           2      0             1       2
+17  Saudi_0000025.jpeg                               MISSED                       nothing             0           4      0             0       4
+18  Saudi_0000026.jpeg                               MISSED                       nothing             0           3      0             0       3
+19  Saudi_0000027.jpeg                            all found                      D00 0.31             1           1      1             0       0
+20  Saudi_0000028.jpeg  partly (found 0, missed 1, false 1)                      D00 0.38             1           1      0             1       1
+21   Saudi_000003.jpeg  partly (found 0, missed 2, false 2)            D10 0.50, D10 0.41             2           2      0             2       2
+22   Saudi_000004.jpeg  partly (found 0, missed 1, false 1)                      D00 0.34             1           1      0             1       1
+23   Saudi_000005.jpeg  partly (found 0, missed 1, false 1)                      D00 0.28             1           1      0             1       1
+24   Saudi_000006.jpeg                               MISSED                       nothing             0           1      0             0       1
+25   Saudi_000007.jpeg                               MISSED                       nothing             0           1      0             0       1
+26   Saudi_000008.jpeg                               MISSED                       nothing             0           3      0             0       3
+27   Saudi_000009.jpeg                               MISSED                       nothing             0           2      0             0       2
+
+LOCAL PHOTOS PER DAMAGE TYPE
+       threshold  precision  recall    F1    TP     FP     FN  real_boxes  AP50 (no threshold)
+D00        0.250      0.111   0.056 0.074 1.000  8.000 17.000      18.000                0.057
+D10        0.280      0.000   0.000 0.000 0.000  8.000  8.000       8.000                0.022
+D20        0.240      0.000   0.000 0.000 0.000  1.000  2.000       2.000                0.027
+D40        0.130      0.000   0.000 0.000 0.000  1.000 21.000      21.000                0.000
+macro        NaN      0.028   0.014 0.019 1.000 18.000 48.000      49.000                0.026
+
+GAP RDD TEST VS LOCAL PHOTOS
+       precision (local)  recall (local)  F1 (local)  precision (RDD test)  precision gap (RDD - local)  recall (RDD test)  recall gap (RDD - local)  F1 (RDD test)  F1 gap (RDD - local)
+D00                0.111           0.056       0.074                 0.603                        0.492              0.429                     0.373          0.501                 0.427
+D10                0.000           0.000       0.000                 0.632                        0.632              0.454                     0.454          0.528                 0.528
+D20                0.000           0.000       0.000                 0.636                        0.636              0.530                     0.530          0.578                 0.578
+D40                0.000           0.000       0.000                 0.515                        0.515              0.718                     0.718          0.600                 0.600
+macro              0.028           0.014       0.019                 0.597                        0.569              0.532                     0.519          0.552                 0.533
+
+SUMMARY
+                                          value
+photos                                       28
+photos with damage detected                  12
+photos with NO damage detected               16
+photos WITH damage (labels)                  27
+...of which at least one damage found         1
+photos WITHOUT damage (labels)                1
+...of which the model raised a false ...      0
+
+DETECTIONS PER DAMAGE TYPE
+     detections
+D00           9
+D10           8
+D20           1
+D40           1
+
+NOTES
+  - No training, no tuning on local photos: the final model and its thresholds (chosen on the RDD validation split) were only APPLIED.
+  - Solid coloured boxes = model detections above the final thresholds; white dashed = your labels.
+  - Pictures with the detections are in /content/e4_output (NOT in the repository: it is public).
+  - A small local set (40-80 photos) gives noisy numbers; a damage type with few real boxes has an unreliable precision/recall.
+  - Compare with the RDD test numbers in the sheet 'gap RDD test vs local photos' to describe the domain shift (camera, road, light, weather).
