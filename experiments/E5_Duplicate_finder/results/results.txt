@@ -1,0 +1,37 @@
+E5 - Duplicate finder (embedding comparison)
+============================================
+created: 2026-10-21 19:07
+
+SETTINGS
+  experiment: E5_Duplicate_finder
+  dataset folder: /content/rdd_test
+  gallery crops: 287
+  query images: 287
+  labelled pairs: 574
+  methods: Perceptual Hash, ResNet50 ImageNet, DINOv2
+
+RESULTS
+                   Recall@1  Recall@5   MRR  ROC-AUC (test pairs)  Threshold (calibration)  Precision (test pairs)  Recall (test pairs)  F1 (test pairs)
+Method                                                                                                                                                  
+Perceptual Hash       0.770     0.878 0.822                 0.969                    0.651                   0.962                0.872            0.915
+ResNet50 ImageNet     0.923     0.990 0.953                 0.989                    0.646                   0.974                0.872            0.920
+DINOv2                0.756     0.906 0.824                 0.978                    0.562                   0.929                0.907            0.918
+
+CROPS PER DAMAGE TYPE
+            crops
+class_name       
+D00           219
+D20            57
+D10            11
+
+PAIRS PER SPLIT
+             negative (0)  positive (1)
+split                                  
+calibration           201           201
+test                   86            86
+
+NOTES
+  - SYNTHETIC-VIEW PILOT: every positive pair is a lightly altered copy of the same crop, not a second photo of the same real damage. Do not read these numbers as accuracy on real duplicate reports.
+  - Nothing is trained and no image is cropped here: the crops, queries and pair labels come ready-made from the dataset zip.
+  - The threshold of each method is chosen on the calibration pairs (best F1) and measured on the test pairs; ROC-AUC uses the balanced test pairs.
+  - Retrieval (Recall@1, Recall@5, MRR) ranks the true crop against the WHOLE gallery. Road photos from the same drive are often near-identical, so a different crop can look like the right one: this lowers Recall@1 for every method.
