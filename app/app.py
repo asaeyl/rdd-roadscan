@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 from io import BytesIO
 from datetime import datetime
@@ -5,6 +6,18 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
+
+# ---- final model: weights + the settings chosen when it was built (image size, one confidence threshold per damage type)
+PROJECT_ROOT = Path(__file__).resolve().parents[1]            # app/app.py -> project root
+FINAL_DIR = PROJECT_ROOT / 'model' / 'final_model'
+weights = FINAL_DIR / 'best.pt'
+artifact_file = FINAL_DIR / 'artifact.json'
+try:
+    artifact = json.loads(artifact_file.read_text()) if artifact_file.exists() else {}
+except Exception:
+    artifact = {}
+IMGSZ = int(artifact.get('image_size', 640))
+THRESHOLDS = artifact.get('confidence_thresholds', {}) or {}   # e.g. {"D00": 0.31, "D10": 0.28, ...}
 
 st.set_page_config(page_title='RoadScan | Smart Road Intelligence', page_icon='🛣️', layout='wide', initial_sidebar_state='expanded')
 st.markdown('''<style>
@@ -31,8 +44,8 @@ hr {border-color:#314a5b}
 </style>''',unsafe_allow_html=True)
 
 T = {
- 'English': {'subtitle':'AI-powered road damage detection & inspection','choose':'Workspace','citizen':'Citizen','supervisor':'Maintenance supervisor','inspection':'Inspection team','upload':'Upload road image(s)','original':'Original image','result':'AI detection','none':'No damage detected at this threshold. This does not confirm that the road is damage-free.','det':'Detections','images':'Images analyzed','types':'Damage types','confidence':'Confidence threshold','download':'Download annotated image','csv':'Download inspection report (CSV)','notice':'Priority levels are experimental suggestions based on detected damage type and box size, not verified road safety assessments.','report':'Local demo reports (this session only)','submit':'Save demo report','saved':'Demo report saved in this browser session. No server database is connected.','about':'RoadScan demo • YOLO final weights • 640px inference','welcome':'Upload a road photo to start the analysis.','severity':'Suggested priority','high':'High','medium':'Medium','low':'Low','detail':'Detection details','lang':'Language'},
- 'العربية': {'subtitle':'نظام ذكي لاكتشاف أضرار الطرق وفحصها','choose':'واجهة المستخدم','citizen':'المواطن','supervisor':'مشرف الصيانة','inspection':'فريق الفحص','upload':'ارفعي صورة أو عدة صور للطريق','original':'الصورة الأصلية','result':'نتيجة الكشف','none':'لم يُكتشف ضرر عند حد الثقة الحالي، وهذا لا يعني أن الطريق خالٍ من الأضرار.','det':'الاكتشافات','images':'الصور المحللة','types':'أنواع الأضرار','confidence':'حد الثقة','download':'تحميل الصورة مع المربعات','csv':'تحميل تقرير الفحص CSV','notice':'الأولويات المقترحة تجريبية بناءً على نوع الضرر وحجم المربع، وليست تقييمًا معتمدًا لسلامة الطريق.','report':'البلاغات التجريبية (خلال الجلسة فقط)','submit':'حفظ بلاغ تجريبي','saved':'تم حفظ البلاغ داخل جلسة التطبيق فقط، ولا توجد قاعدة بيانات دائمة.','about':'نسخة تجريبية • النموذج النهائي YOLO • حجم الصورة 640','welcome':'ارفعي صورة شارع لبدء التحليل.','severity':'الأولوية المقترحة','high':'عالية','medium':'متوسطة','low':'منخفضة','detail':'تفاصيل الاكتشاف','lang':'اللغة'}
+ 'English': {'subtitle':'AI-powered road damage detection & inspection','choose':'Workspace','citizen':'Citizen','supervisor':'Maintenance supervisor','inspection':'Inspection team','upload':'Upload road image(s)','original':'Original image','result':'AI detection','none':'No damage detected at this threshold. This does not confirm that the road is damage-free.','det':'Detections','images':'Images analyzed','types':'Damage types','confidence':'Confidence threshold','use_final':'Use the final model\'s thresholds','final_info':'Thresholds per damage type (from the final model)','download':'Download annotated image','csv':'Download inspection report (CSV)','notice':'Priority levels are experimental suggestions based on detected damage type and box size, not verified road safety assessments.','report':'Local demo reports (this session only)','submit':'Save demo report','saved':'Demo report saved in this browser session. No server database is connected.','about':'RoadScan demo • YOLO final weights • {size}px inference','welcome':'Upload a road photo to start the analysis.','severity':'Suggested priority','high':'High','medium':'Medium','low':'Low','detail':'Detection details','lang':'Language'},
+ 'العربية': {'subtitle':'نظام ذكي لاكتشاف أضرار الطرق وفحصها','choose':'واجهة المستخدم','citizen':'المواطن','supervisor':'مشرف الصيانة','inspection':'فريق الفحص','upload':'ارفعي صورة أو عدة صور للطريق','original':'الصورة الأصلية','result':'نتيجة الكشف','none':'لم يُكتشف ضرر عند حد الثقة الحالي، وهذا لا يعني أن الطريق خالٍ من الأضرار.','det':'الاكتشافات','images':'الصور المحللة','types':'أنواع الأضرار','confidence':'حد الثقة','use_final':'استخدام حدود الثقة للنموذج النهائي','final_info':'حد الثقة لكل نوع ضرر (من النموذج النهائي)','download':'تحميل الصورة مع المربعات','csv':'تحميل تقرير الفحص CSV','notice':'الأولويات المقترحة تجريبية بناءً على نوع الضرر وحجم المربع، وليست تقييمًا معتمدًا لسلامة الطريق.','report':'البلاغات التجريبية (خلال الجلسة فقط)','submit':'حفظ بلاغ تجريبي','saved':'تم حفظ البلاغ داخل جلسة التطبيق فقط، ولا توجد قاعدة بيانات دائمة.','about':'نسخة تجريبية • النموذج النهائي YOLO • حجم الصورة {size}','welcome':'ارفعي صورة شارع لبدء التحليل.','severity':'الأولوية المقترحة','high':'عالية','medium':'متوسطة','low':'منخفضة','detail':'تفاصيل الاكتشاف','lang':'اللغة'}
 }
 LABELS={'D00':('Longitudinal crack','شق طولي'),'D10':('Transverse crack','شق عرضي'),'D20':('Alligator crack','تشققات تمساحية'),'D40':('Pothole','حفرة')}
 
@@ -41,11 +54,23 @@ with st.sidebar:
     language=st.selectbox('Language / اللغة',['English','العربية'])
     t=T[language]
     role=st.radio(t['choose'],[t['citizen'],t['supervisor'],t['inspection']])
-    conf=st.slider(t['confidence'],0.10,0.90,0.25,0.05)
-    st.caption(t['about'])
+    use_final=False
+    if THRESHOLDS:
+        use_final=st.checkbox(t['use_final'],value=True)
+    conf=st.slider(t['confidence'],0.10,0.90,0.25,0.05,disabled=use_final)
+    if use_final:
+        st.caption(t['final_info'])
+        st.caption(' • '.join(f'{k}: {v:.2f}' for k,v in THRESHOLDS.items()))
+    st.caption(t['about'].format(size=IMGSZ))
+
+def threshold_for(name):
+    """Confidence a box of this damage type needs: the final model's threshold, or the slider value."""
+    return float(THRESHOLDS.get(name,conf)) if use_final else conf
+
+# lowest confidence the model has to report; the per-type thresholds are applied afterwards
+floor=min(float(v) for v in THRESHOLDS.values()) if use_final else conf
 
 st.markdown(f'''<div class="hero"><div class="eyebrow">ROADSCAN / INTELLIGENT INFRASTRUCTURE</div><h1>RoadScan <span style="color:#47d8c4">AI</span></h1><p>{t['subtitle']}</p><span class="chip">● FINAL MODEL ACTIVE</span></div>''',unsafe_allow_html=True)
-weights=Path(__file__).resolve().parent/'models'/'best.pt'
 if not weights.exists():
     st.error(f'Missing model file: {weights}')
     st.stop()
@@ -68,13 +93,17 @@ if files:
     for uploaded in files:
         try:
             img=Image.open(uploaded).convert('RGB')
-            res=model.predict(img,imgsz=640,conf=conf,verbose=False)[0]
-            annotated=Image.fromarray(res.plot()[...,::-1])
+            res=model.predict(img,imgsz=IMGSZ,conf=floor,verbose=False)[0]
+            # keep only the boxes that reach the threshold of their own damage type
+            kept=[i for i,box in enumerate(res.boxes)
+                  if float(box.conf[0].item())>=threshold_for(str(res.names[int(box.cls[0].item())]))]
+            boxes=[res.boxes[i] for i in kept]
+            annotated=Image.fromarray(res[kept].plot()[...,::-1]) if kept else img.copy()
         except Exception as e:
             st.error(f'{uploaded.name}: {e}')
             continue
         records=[]
-        for box in res.boxes:
+        for box in boxes:
             cls=int(box.cls[0].item())
             name=str(res.names[cls])
             score=float(box.conf[0].item())
