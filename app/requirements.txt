@@ -1,5 +1,8 @@
 streamlit>=1.35,<2
-ultralytics>=8.3
+ultralytics==X.Y.Z
 opencv-python-headless
 pillow>=10
 pandas>=2
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
