@@ -1,0 +1,274 @@
+E4 - Final model on our local photos
+====================================
+created: 2026-10-21 14:38
+
+SETTINGS
+  experiment: E4_local_photos
+  final model: yolo26s.pt
+  image size: 640
+  thresholds: {'D00': 0.25, 'D10': 0.28, 'D20': 0.24, 'D40': 0.13}
+  photos: 217
+  labels used: True
+  pictures written to: /content/e4_output_test
+  final model split id: 3e129a0ab7c1
+  real boxes in local photos: 287
+
+PER PHOTO
+                                       photo                               status                               detections  n_detections  real_boxes  found  false_alarms  missed
+0    10333d4fc80dac0efc33e0f274266d39_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+1    1748961da013aa6b920f8a6f18547e69_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+2    17498f8e4591a6004cdafd1abb05640e_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+3    198521dc10ccce315dd67c2a195f1945_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+4    5777a69e66d025cb6620cb37d4d71b90_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+5    78165b78-8683-4dc9-af80-997b874aa0fa...  partly (found 0, missed 2, false 3)             D00 0.66, D00 0.38, D00 0.28             3           2      0             3       2
+6    9b63bb7e811e6a03cf9a791ac6f32479_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+7    9ba73402ab1adf4c30df98bbfa6151e0_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+8    9c8ee8a70628d6dab451fdea99ac7c6e_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+9    9e3c9ae0d3e6390d8d12db242e06bc57_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+10   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+11   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+12   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 1, false 1)                                 D10 0.38             1           1      0             1       1
+13   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+14   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+15   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           2      0             0       2
+16   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+17   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+18   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                            all found                                 D20 0.56             1           1      1             0       0
+19   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           3      0             0       3
+20   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 3, false 1)                                 D40 0.16             1           3      0             1       3
+21   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+22   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+23   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+24   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+25   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 5, false 2)                       D00 0.40, D10 0.28             2           5      0             2       5
+26   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           2      0             0       2
+27   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+28   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+29   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 3, false 2)                       D40 0.47, D40 0.17             2           3      0             2       3
+30   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+31   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+32   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+33   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           3      0             0       3
+34   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+35   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           3      0             0       3
+36   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           4      0             0       4
+37   IMG_2297_JPG.rf.04dafaf2c17f2eca2f1e...                            all found                                 D00 0.46             1           1      1             0       0
+38   IMG_2383_JPG.rf.ecd3e870594218a04b22...  partly (found 0, missed 1, false 1)                                 D20 0.54             1           1      0             1       1
+39   IMG_2539_JPG.rf.a98dcc3d0179b4a69c1b...  partly (found 0, missed 1, false 2)                       D00 0.37, D00 0.33             2           1      0             2       1
+40   IMG_2577_JPG.rf.784777744ccc19304145...  partly (found 0, missed 1, false 1)                                 D10 0.29             1           1      0             1       1
+41   IMG_2578_JPG.rf.47d4ec9005885aa6f291...  partly (found 0, missed 2, false 1)                                 D10 0.42             1           2      0             1       2
+42   IMG_2636_JPG.rf.c1b4b40b70dd005375d1...                               MISSED                                  nothing             0           2      0             0       2
+43   IMG_2695_JPG.rf.69967d138fc2c14937d1...  partly (found 0, missed 1, false 1)                                 D10 0.28             1           1      0             1       1
+44   IMG_2698_JPG.rf.b15d76faa767bf5e07e5...                               MISSED                                  nothing             0           1      0             0       1
+45   IMG_2699_JPG.rf.ad9ba71196271f240c4b...                               MISSED                                  nothing             0           1      0             0       1
+46   IMG_2711_JPG.rf.feca6503055d5e2d6760...                               MISSED                                  nothing             0           1      0             0       1
+47   IMG_2715_JPG.rf.ecd65313567a59596a55...                               MISSED                                  nothing             0           1      0             0       1
+48   IMG_2718_JPG.rf.f24b6b6130f7f1dab027...                               MISSED                                  nothing             0           1      0             0       1
+49   IMG_2746_JPG.rf.084914feb2032af12b24...                               MISSED                                  nothing             0           2      0             0       2
+50   IMG_2799_JPG.rf.a45d70b1180809ec70bf...                               MISSED                                  nothing             0           1      0             0       1
+51   IMG_2802_JPG.rf.226f9dcbf9925fe82cad...                               MISSED                                  nothing             0           1      0             0       1
+52   IMG_2854_JPG.rf.96a1b629861545cfb63b...  partly (found 0, missed 1, false 1)                                 D10 0.38             1           1      0             1       1
+53   IMG_2855_JPG.rf.d5a0d4ca6845ed5864fd...                               MISSED                                  nothing             0           1      0             0       1
+54   IMG_2860_JPG.rf.98c6221668b24a1febab...                               MISSED                                  nothing             0           2      0             0       2
+55   IMG_2862_JPG.rf.97fcbbfb8d853471330d...                               MISSED                                  nothing             0           2      0             0       2
+56   IMG_2866_JPG.rf.17b3b9ba61bc3d6f2a55...                               MISSED                                  nothing             0           1      0             0       1
+57   IMG_2876_JPG.rf.380834c49b03b3adfc75...  partly (found 0, missed 2, false 2)                       D00 0.72, D10 0.56             2           2      0             2       2
+58   IMG_2880_JPG.rf.34d41a826c33ed8b245b...  partly (found 0, missed 1, false 1)                                 D40 0.47             1           1      0             1       1
+59   IMG_2884_JPG.rf.1a5a076219552820e9bd...                               MISSED                                  nothing             0           2      0             0       2
+60   IMG_2885_JPG.rf.284173ba7d836795f67c...  partly (found 0, missed 1, false 1)                                 D10 0.35             1           1      0             1       1
+61   IMG_2886_JPG.rf.7c8d5d22a2914519fd4e...                               MISSED                                  nothing             0           1      0             0       1
+62   IMG_3336_JPG.rf.71130114db844b076130...                   correct: no damage                                  nothing             0           0      0             0       0
+63   IMG_3543_JPG.rf.3042a7d03e7396d0aae5...                          FALSE ALARM             D40 0.40, D40 0.20, D40 0.15             3           0      0             3       0
+64   IMG_3976_JPG.rf.a122512ba7463ca13b37...                   correct: no damage                                  nothing             0           0      0             0       0
+65   IMG_4377_JPG.rf.a9226a2aa706c12417fa...                            all found                                 D20 0.61             1           1      1             0       0
+66   IMG_4396_JPG.rf.8e1f65777bd6ef7cdc4d...                               MISSED                                  nothing             0           1      0             0       1
+67   IMG_4399_JPG.rf.99484df6190035c1ae95...                   correct: no damage                                  nothing             0           0      0             0       0
+68   IMG_4513_JPG.rf.ab7078ba7fa9b9b3f5ae...                               MISSED                                  nothing             0           1      0             0       1
+69   IMG_8843_JPG.rf.778f0182e2a76ada6b02...                   correct: no damage                                  nothing             0           0      0             0       0
+70   IMG_8845_JPG.rf.8c5545917519f2337cbd...                   correct: no damage                                  nothing             0           0      0             0       0
+71   IMG_8846_JPG.rf.f7035a93ae581a24fd4a...                   correct: no damage                                  nothing             0           0      0             0       0
+72   IMG_8847_JPG.rf.2560f87f458a9f67a746...                   correct: no damage                                  nothing             0           0      0             0       0
+73   IMG_8851_JPG.rf.025e46ac7decb7be880f...                   correct: no damage                                  nothing             0           0      0             0       0
+74   IMG_8852_JPG.rf.4b027af9c8b23c3d24f2...                   correct: no damage                                  nothing             0           0      0             0       0
+75   IMG_8854_JPG.rf.0be6db2a240f531c3960...                   correct: no damage                                  nothing             0           0      0             0       0
+76   IMG_8855_JPG.rf.3e29998821d3a0c780d0...                   correct: no damage                                  nothing             0           0      0             0       0
+77   IMG_8856_JPG.rf.de6217485f593ac1a855...                   correct: no damage                                  nothing             0           0      0             0       0
+78   IMG_8860_JPG.rf.cedc74df0d9760c01a27...                   correct: no damage                                  nothing             0           0      0             0       0
+79   IMG_8865_JPG.rf.84046f5a0e03dc8d4945...                   correct: no damage                                  nothing             0           0      0             0       0
+80   IMG_8866_JPG.rf.23216545695a4871dfb6...                          FALSE ALARM                                 D00 0.30             1           0      0             1       0
+81   IMG_8870_JPG.rf.6cbe833127ea729ed629...                   correct: no damage                                  nothing             0           0      0             0       0
+82   IMG_8874_JPG.rf.9bb6bac9c1cdfcc1913b...                   correct: no damage                                  nothing             0           0      0             0       0
+83   IMG_8875_JPG.rf.b04ca2236c03777262d3...                   correct: no damage                                  nothing             0           0      0             0       0
+84   IMG_8883_JPG.rf.ef18ba109927f1282689...                   correct: no damage                                  nothing             0           0      0             0       0
+85   IMG_8886_JPG.rf.a2cb736bda71c7998053...  partly (found 0, missed 1, false 1)                                 D10 0.58             1           1      0             1       1
+86   IMG_8888_JPG.rf.ff0e88f49043f999906b...                   correct: no damage                                  nothing             0           0      0             0       0
+87   IMG_8897_JPG.rf.be66f7c6901f2194e0ef...                   correct: no damage                                  nothing             0           0      0             0       0
+88   IMG_8898_JPG.rf.0c652a3274d7d79b8b57...                   correct: no damage                                  nothing             0           0      0             0       0
+89   IMG_8932_JPG.rf.64f3bb10d5beb025c96f...  partly (found 0, missed 1, false 2)                       D00 0.70, D00 0.35             2           1      0             2       1
+90   IMG_8936_JPG.rf.d2d7d4703fa73415a352...  partly (found 0, missed 3, false 7)  D10 0.66, D00 0.65, D00 0.55, D10 0....             7           3      0             7       3
+91   IMG_8938_JPG.rf.db1f69150e09ab8992a8...  partly (found 1, missed 3, false 4)  D10 0.74, D00 0.55, D10 0.40, D00 0....             5           4      1             4       3
+92   IMG_8939_JPG.rf.d04077845b5723f071e8...  partly (found 0, missed 1, false 6)  D10 0.63, D00 0.36, D00 0.33, D00 0....             6           1      0             6       1
+93   IMG_8945_JPG.rf.10ed2f9b14f0ed0c68fc...  partly (found 0, missed 2, false 5)  D10 0.65, D00 0.62, D00 0.61, D00 0....             5           2      0             5       2
+94   IMG_8948_JPG.rf.6c6a91e518d3661d9d4c...  partly (found 0, missed 1, false 5)  D00 0.72, D00 0.45, D00 0.42, D10 0....             5           1      0             5       1
+95   IMG_8951_JPG.rf.617d476120a09a56fccd...  partly (found 0, missed 1, false 6)  D00 0.71, D10 0.59, D10 0.51, D00 0....             6           1      0             6       1
+96   IMG_8958_JPG.rf.db9fb84d8b02837c3a42...                               MISSED                                  nothing             0           1      0             0       1
+97   IMG_8959_JPG.rf.c5ef77bc17dd33a9cf20...  partly (found 1, missed 5, false 0)                                 D00 0.36             1           6      1             0       5
+98   IMG_8974_JPG.rf.354ba72be55557d0210c...                               MISSED                                  nothing             0           1      0             0       1
+99   IMG_8975_JPG.rf.03314b5e910f6f5da7fb...  partly (found 0, missed 2, false 1)                                 D00 0.37             1           2      0             1       2
+100  IMG_8979_JPG.rf.89e32ce7c85443adaf78...  partly (found 0, missed 1, false 1)                                 D00 0.29             1           1      0             1       1
+101  IMG_8980_JPG.rf.a8d9d277a601f9979791...                            all found                                 D00 0.36             1           1      1             0       0
+102  IMG_8984_JPG.rf.d0b418328569bba03720...                               MISSED                                  nothing             0           1      0             0       1
+103  IMG_8996_JPG.rf.d1f7af196e1adc33c98d...                               MISSED                                  nothing             0           1      0             0       1
+104  IMG_8998_JPG.rf.7ab09134825974ba5b51...  partly (found 0, missed 3, false 1)                                 D00 0.48             1           3      0             1       3
+105  IMG_8999_JPG.rf.6486e162b8e0d9dfd8d7...                               MISSED                                  nothing             0           2      0             0       2
+106  IMG_9001_JPG.rf.94387a3584dbfa76db39...                               MISSED                                  nothing             0           1      0             0       1
+107  IMG_9002_JPG.rf.c50ebea816bc3d449fe3...  partly (found 0, missed 3, false 1)                                 D00 0.30             1           3      0             1       3
+108  IMG_9003_JPG.rf.659ccae3e2c5235f3750...                               MISSED                                  nothing             0           3      0             0       3
+109  IMG_9004_JPG.rf.e9ab4ca51133cbacbeb6...                               MISSED                                  nothing             0           2      0             0       2
+110  IMG_9006_JPG.rf.11d25b54b3a1ba0ef824...                               MISSED                                  nothing             0          11      0             0      11
+111  IMG_9008_JPG.rf.3f9fe3969f54850dbd23...                               MISSED                                  nothing             0           6      0             0       6
+112  IMG_9009_JPG.rf.61938bd341db36aa9a53...                          FALSE ALARM                                 D20 0.26             1           0      0             1       0
+113  IMG_9013_JPG.rf.2aca03f6a4691b524af9...  partly (found 1, missed 4, false 2)             D00 0.43, D00 0.40, D10 0.32             3           5      1             2       4
+114  IMG_9023_JPG.rf.2247f416017a43013164...  partly (found 1, missed 8, false 0)                                 D00 0.29             1           9      1             0       8
+115  IMG_9024_JPG.rf.16f5492da6c5be9e1786...  partly (found 1, missed 2, false 2)             D00 0.57, D10 0.34, D40 0.15             3           3      1             2       2
+116  IMG_9025_JPG.rf.c9c8420d4e2ed69fcf6c...                               MISSED                                  nothing             0           2      0             0       2
+117  IMG_9026_JPG.rf.705ec1ea40fdf97843dd...  partly (found 1, missed 1, false 0)                                 D00 0.38             1           2      1             0       1
+118  IMG_9027_JPG.rf.1e57eea9651ece7e70f6...                               MISSED                                  nothing             0           2      0             0       2
+119  IMG_9028_JPG.rf.c19ec2e5c7488ca42e32...                               MISSED                                  nothing             0           7      0             0       7
+120  IMG_9030_JPG.rf.bbd10e8a3f2df608564f...                               MISSED                                  nothing             0           4      0             0       4
+121  IMG_9033_JPG.rf.bf3834992edea7e70554...  partly (found 1, missed 5, false 0)                                 D00 0.27             1           6      1             0       5
+122  IMG_9034_JPG.rf.5665d8d2a9b760471407...  partly (found 0, missed 7, false 1)                                 D00 0.48             1           7      0             1       7
+123  IMG_9037_JPG.rf.1670af8c2addef7f5b7e...  partly (found 0, missed 4, false 1)                                 D10 0.38             1           4      0             1       4
+124  IMG_9038_JPG.rf.4720d03625dd9e4b9ae5...                               MISSED                                  nothing             0           2      0             0       2
+125  IMG_9039_JPG.rf.8bac3b8d684d7d3d7067...                               MISSED                                  nothing             0           1      0             0       1
+126  IMG_9040_JPG.rf.5cd142e0369846c23d74...  partly (found 1, missed 2, false 2)             D00 0.41, D10 0.39, D00 0.38             3           3      1             2       2
+127  IMG_9041_JPG.rf.92c12d0be936ab5962f3...  partly (found 0, missed 3, false 1)                                 D00 0.65             1           3      0             1       3
+128  IMG_9042_JPG.rf.8269542f1051a582d429...  partly (found 0, missed 2, false 1)                                 D00 0.45             1           2      0             1       2
+129  IMG_9043_JPG.rf.d6599c0e794356faa355...                               MISSED                                  nothing             0           3      0             0       3
+130  IMG_9044_JPG.rf.228df5cf5166278109b7...  partly (found 0, missed 5, false 1)                                 D00 0.58             1           5      0             1       5
+131  IMG_9046_JPG.rf.38b938fa54aedcbe82d0...                               MISSED                                  nothing             0           3      0             0       3
+132  IMG_9048_JPG.rf.114e51394c236e2ba0b4...                               MISSED                                  nothing             0           2      0             0       2
+133  IMG_9050_JPG.rf.a9eb263b95e46b8191a2...  partly (found 0, missed 2, false 1)                                 D00 0.65             1           2      0             1       2
+134  IMG_9053_JPG.rf.143a11404afcf964600e...                               MISSED                                  nothing             0           4      0             0       4
+135  IMG_9055_JPG.rf.76799ecde6733812a90c...  partly (found 1, missed 5, false 0)                                 D00 0.34             1           6      1             0       5
+136  IMG_9057_JPG.rf.6b5ab13ed01b999f0ea3...  partly (found 0, missed 4, false 2)                       D10 0.51, D00 0.35             2           4      0             2       4
+137  IMG_9058_JPG.rf.a6378c9c2b57e7558f0d...                               MISSED                                  nothing             0           6      0             0       6
+138  IMG_9064_JPG.rf.80799f962a479872ad8a...  partly (found 0, missed 1, false 1)                                 D20 0.74             1           1      0             1       1
+139  IMG_9075_JPG.rf.da6a7e4361ea10478214...  partly (found 0, missed 1, false 1)                                 D20 0.71             1           1      0             1       1
+140  IMG_9076_JPG.rf.65144620b605270e64a1...  partly (found 0, missed 1, false 1)                                 D20 0.26             1           1      0             1       1
+141  IMG_9079_JPG.rf.00b4a4477af85b1fd44c...  partly (found 0, missed 2, false 2)                       D20 0.29, D20 0.27             2           2      0             2       2
+142  IMG_9081_JPG.rf.0dd773a8d5b42320255f...  partly (found 0, missed 1, false 1)                                 D20 0.55             1           1      0             1       1
+143  IMG_9083_JPG.rf.0d0a9fda504f25144268...  partly (found 0, missed 1, false 1)                                 D20 0.68             1           1      0             1       1
+144  IMG_9084_JPG.rf.823166d047a1f8accf01...  partly (found 0, missed 1, false 2)                       D20 0.31, D20 0.26             2           1      0             2       1
+145  IMG_9087_JPG.rf.9d76c0c1d5ab8af83edf...  partly (found 0, missed 1, false 1)                                 D20 0.40             1           1      0             1       1
+146  IMG_9089_JPG.rf.f9d2cac55dca957f5770...  partly (found 0, missed 1, false 1)                                 D20 0.58             1           1      0             1       1
+147  IMG_9091_JPG.rf.ebd5b3debf41b504cc4e...  partly (found 0, missed 1, false 1)                                 D20 0.26             1           1      0             1       1
+148  IMG_9094_JPG.rf.cd4b95e0719f2f5cf0d6...  partly (found 1, missed 1, false 1)                       D00 0.65, D20 0.36             2           2      1             1       1
+149  IMG_9095_JPG.rf.7f1c90647aa86aa43795...  partly (found 0, missed 1, false 1)                                 D20 0.54             1           1      0             1       1
+150  IMG_9102_JPG.rf.c64a3366987550ed4b74...                   correct: no damage                                  nothing             0           0      0             0       0
+151  IMG_9103_JPG.rf.5df4d82316b4e97d3721...                   correct: no damage                                  nothing             0           0      0             0       0
+152  IMG_9113_JPG.rf.a8b455531ea632c60016...  partly (found 0, missed 3, false 2)                       D20 0.42, D20 0.42             2           3      0             2       3
+153  IMG_9119_JPG.rf.7626848323eea4c855ba...                               MISSED                                  nothing             0           4      0             0       4
+154  IMG_9125_JPG.rf.82cd7d7d1a00497cba7e...                   correct: no damage                                  nothing             0           0      0             0       0
+155  IMG_9126_JPG.rf.35099f3f8299a5a256d3...                   correct: no damage                                  nothing             0           0      0             0       0
+156  IMG_9127_JPG.rf.d73268b74822b343a920...                            all found                                 D00 0.36             1           1      1             0       0
+157  IMG_9128_JPG.rf.0f6ac385ed95b895f7e3...                   correct: no damage                                  nothing             0           0      0             0       0
+158  IMG_9129_JPG.rf.bc7e3922756973b8cc7f...                   correct: no damage                                  nothing             0           0      0             0       0
+159  IMG_9131_JPG.rf.9b62d1d940140b9f1796...                   correct: no damage                                  nothing             0           0      0             0       0
+160  IMG_9132_JPG.rf.e49c0567ea6fa3d18ef0...                   correct: no damage                                  nothing             0           0      0             0       0
+161  IMG_9133_JPG.rf.ddcd3b8208523f2f27bf...                          FALSE ALARM                                 D00 0.34             1           0      0             1       0
+162  IMG_9136_JPG.rf.33c53c5d396742fc667b...                   correct: no damage                                  nothing             0           0      0             0       0
+163  IMG_9137_JPG.rf.705f2cf5c8e61c76e393...                   correct: no damage                                  nothing             0           0      0             0       0
+164  IMG_9139_JPG.rf.d92b92c77f9109202d8f...                   correct: no damage                                  nothing             0           0      0             0       0
+165  IMG_9146_JPG.rf.82f8f4d1a64d5b4c3ae1...                            all found                       D00 0.62, D00 0.38             2           2      2             0       0
+166  IMG_9149_JPG.rf.28d6eae3b300e39e37e9...  partly (found 1, missed 0, false 1)                       D00 0.38, D00 0.36             2           1      1             1       0
+167  IMG_9155_JPG.rf.edf0e1e223d7c82157cc...                          FALSE ALARM                                 D40 0.16             1           0      0             1       0
+168  IMG_9156_JPG.rf.5e5131110ca7ed816a7f...                   correct: no damage                                  nothing             0           0      0             0       0
+169  IMG_9158_JPG.rf.2ba38c381fc447ad86d7...  partly (found 1, missed 0, false 1)                       D00 0.49, D00 0.33             2           1      1             1       0
+170  IMG_9159_JPG.rf.e4afbfcff93d3453f465...                               MISSED                                  nothing             0           1      0             0       1
+171  IMG_9160_JPG.rf.cb1a4324ff0101627af5...                            all found                                 D00 0.39             1           1      1             0       0
+172  IMG_9162_JPG.rf.354e4148c06d0ddf8d6c...                            all found                                 D00 0.72             1           1      1             0       0
+173  IMG_9164_JPG.rf.d66d9e6f0f2ffdfff5e9...                            all found                                 D00 0.39             1           1      1             0       0
+174  IMG_9168_JPG.rf.7660ea8d21db52a36158...                               MISSED                                  nothing             0           1      0             0       1
+175  IMG_9171_JPG.rf.bbcb4b30f7771ad8e709...                            all found                                 D00 0.66             1           1      1             0       0
+176  IMG_9173_JPG.rf.3629efa3ffc932f78614...                   correct: no damage                                  nothing             0           0      0             0       0
+177  IMG_9177_JPG.rf.c76f6537c6919f4838a6...                   correct: no damage                                  nothing             0           0      0             0       0
+178  IMG_9183_JPG.rf.1863723267a092d05734...                   correct: no damage                                  nothing             0           0      0             0       0
+179  IMG_9192_JPG.rf.dc7c599ae8e4a27da668...                   correct: no damage                                  nothing             0           0      0             0       0
+180  IMG_9196_JPG.rf.2b8af6445364c7117a2a...                   correct: no damage                                  nothing             0           0      0             0       0
+181  IMG_9207_JPG.rf.25989a52296d17b2b572...                   correct: no damage                                  nothing             0           0      0             0       0
+182  IMG_9221_JPG.rf.9c3113750390e03447ec...  partly (found 0, missed 1, false 1)                                 D00 0.41             1           1      0             1       1
+183  IMG_9224_JPG.rf.590a3a1529b19279ccff...                            all found                                 D00 0.29             1           1      1             0       0
+184  IMG_9227_JPG.rf.1e01cbbefba7b472c99a...                               MISSED                                  nothing             0           2      0             0       2
+185  IMG_9230_JPG.rf.580afda9b5943f59571a...                               MISSED                                  nothing             0           1      0             0       1
+186  IMG_9234_JPG.rf.03467ba553e605dfd1d4...                          FALSE ALARM                                 D40 0.14             1           0      0             1       0
+187  IMG_9237_JPG.rf.59af6929d1afa610b47f...                            all found                                 D00 0.50             1           1      1             0       0
+188  IMG_9238_JPG.rf.f5bc7682fc979dd02ca3...  partly (found 0, missed 1, false 1)                                 D00 0.44             1           1      0             1       1
+189  IMG_9240_JPG.rf.7c4e9188f1497385712f...  partly (found 0, missed 1, false 1)                                 D00 0.42             1           1      0             1       1
+190  IMG_9241_JPG.rf.580e32a8376cce997a99...  partly (found 0, missed 1, false 2)                       D00 0.45, D10 0.32             2           1      0             2       1
+191  IMG_9242_JPG.rf.1e2bf04b4c337e0c5b15...  partly (found 0, missed 1, false 1)                                 D00 0.42             1           1      0             1       1
+192  IMG_9244_JPG.rf.4aebdf6f8bac0e499059...  partly (found 0, missed 1, false 1)                                 D00 0.51             1           1      0             1       1
+193  IMG_9245_JPG.rf.6181829bd308b51a08a9...  partly (found 0, missed 1, false 1)                                 D00 0.38             1           1      0             1       1
+194  IMG_9250_JPG.rf.1fe164b8eeddd7b4efac...                   correct: no damage                                  nothing             0           0      0             0       0
+195  IMG_9261_JPG.rf.a84f3c589c24aad77940...                   correct: no damage                                  nothing             0           0      0             0       0
+196  IMG_9263_JPG.rf.ff7206c3ba8613e5ecde...                            all found                                 D00 0.67             1           1      1             0       0
+197  IMG_9267_JPG.rf.f03da4f3f9ab53db8a31...                   correct: no damage                                  nothing             0           0      0             0       0
+198  P_JPG.rf.3f2e971eb576d5ffea4deac1d20...                               MISSED                                  nothing             0           1      0             0       1
+199  c68662c04adcb397fef4c9d51ebcbcf2_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+200  c8567e24bd5c0a9734ce69b6c8ce66ad_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+201  c998fee13a50cc61d9298f45ce2541fd_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+202  cc070ed1148fef2de4416db60b01ee95_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+203  ffdbbc2f9afb28c2741739f868c88670_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+204  photo_13_2024-11-30_14-31-00_jpg.rf....                   correct: no damage                                  nothing             0           0      0             0       0
+205  photo_14_2024-11-29_18-46-15_jpg.rf....                   correct: no damage                                  nothing             0           0      0             0       0
+206  photo_18_2024-11-30_14-31-00_jpg.rf....                   correct: no damage                                  nothing             0           0      0             0       0
+207  photo_1_2024-10-27_19-28-30_jpg.rf.4...                               MISSED                                  nothing             0           1      0             0       1
+208  photo_1_2024-11-29_14-59-12_jpg.rf.f...                   correct: no damage                                  nothing             0           0      0             0       0
+209  photo_2024-11-29_14-49-30_jpg.rf.88f...                   correct: no damage                                  nothing             0           0      0             0       0
+210  photo_21_2024-11-30_14-31-00_jpg.rf....                   correct: no damage                                  nothing             0           0      0             0       0
+211  photo_23_2024-11-29_18-46-15_jpg.rf....                   correct: no damage                                  nothing             0           0      0             0       0
+212  photo_2_2024-11-29_18-46-15_jpg.rf.1...                          FALSE ALARM                                 D40 0.19             1           0      0             1       0
+213  photo_3_2024-10-27_19-28-30_jpg.rf.b...  partly (found 1, missed 0, false 1)                       D00 0.33, D00 0.25             2           1      1             1       0
+214  photo_3_2024-11-29_18-46-15_jpg.rf.d...                   correct: no damage                                  nothing             0           0      0             0       0
+215  photo_3_2024-11-30_14-47-57_jpg.rf.5...                   correct: no damage                                  nothing             0           0      0             0       0
+216  photo_6_2024-11-29_18-46-15_jpg.rf.9...                   correct: no damage                                  nothing             0           0      0             0       0
+
+LOCAL PHOTOS PER DAMAGE TYPE
+       threshold  precision  recall    F1     TP      FP      FN  real_boxes  AP50 (no threshold)
+D00        0.250      0.321   0.114 0.168 25.000  53.000 194.000     219.000                0.100
+D10        0.280      0.000   0.000 0.000  0.000  28.000  11.000      11.000                0.000
+D20        0.240      0.100   0.035 0.052  2.000  18.000  55.000      57.000                0.018
+D40        0.130      0.000   0.000 0.000  0.000  11.000   0.000       0.000                  NaN
+macro        NaN      0.105   0.037 0.055 27.000 110.000 260.000     287.000                0.039
+
+GAP RDD TEST VS LOCAL PHOTOS
+       precision (local)  recall (local)  F1 (local)  precision (RDD test)  precision gap (RDD - local)  recall (RDD test)  recall gap (RDD - local)  F1 (RDD test)  F1 gap (RDD - local)
+D00                0.321           0.114       0.168                 0.603                        0.283              0.429                     0.314          0.501                 0.333
+D10                0.000           0.000       0.000                 0.632                        0.632              0.454                     0.454          0.528                 0.528
+D20                0.100           0.035       0.052                 0.636                        0.536              0.530                     0.494          0.578                 0.526
+D40                0.000           0.000       0.000                 0.515                        0.515              0.718                     0.718          0.600                 0.600
+macro              0.105           0.037       0.055                 0.597                        0.491              0.532                     0.495          0.552                 0.497
+
+SUMMARY
+                                          value
+photos                                      217
+photos with damage detected                  84
+photos with NO damage detected              133
+photos WITH damage (labels)                 144
+...of which at least one damage found        26
+photos WITHOUT damage (labels)               73
+...of which the model raised a false ...      7
+
+DETECTIONS PER DAMAGE TYPE
+     detections
+D00          78
+D10          28
+D20          20
+D40          11
+
+NOTES
+  - No training, no tuning on local photos: the final model and its thresholds (chosen on the RDD validation split) were only APPLIED.
+  - Solid coloured boxes = model detections above the final thresholds; white dashed = your labels.
+  - Pictures with the detections are in /content/e4_output_test (NOT in the repository: it is public).
+  - A small local set (40-80 photos) gives noisy numbers; a damage type with few real boxes has an unreliable precision/recall.
+  - Compare with the RDD test numbers in the sheet 'gap RDD test vs local photos' to describe the domain shift (camera, road, light, weather).
