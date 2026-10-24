@@ -1,6 +1,6 @@
 {
   "model": "yolo26s.pt",
-  "source": "fine-tuned from /content/rdd-roadscan/model/final_model/best.pt: 640 px, 20 epochs, on local photos",
+  "source": "re-used saved fine-tuned weights",
   "fine_tuned_from": "/content/rdd-roadscan/model/final_model/best.pt",
   "image_size": 640,
   "epochs": 20,
@@ -38,5 +38,5 @@
   "split_id": "3271fe4661",
   "seed": 42,
   "smoke_test": false,
-  "created": "2026-10-24 15:07"
+  "created": "2026-10-24 16:13"
 }

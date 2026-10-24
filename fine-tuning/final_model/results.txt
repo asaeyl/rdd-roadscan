@@ -1,0 +1,60 @@
+Fine-tuned final model - local photos (Crack, Pothole, Rut)
+===========================================================
+created: 2026-10-24 16:13
+
+SETTINGS
+  model: yolo26s.pt
+  source: re-used saved fine-tuned weights
+  fine_tuned_from: /content/rdd-roadscan/model/final_model/best.pt
+  image_size: 640
+  epochs: 20
+  optimizer: auto
+  classes: ['Crack', 'Pothole', 'Rut']
+  beta_per_class: {'Crack': 1.0, 'Pothole': 2.0, 'Rut': 1.0}
+  thresholds_chosen_on: local validation photos
+  iou_threshold: 0.5
+  original_to_local_classes: {'D00': 'Crack', 'D10': 'Crack', 'D20': 'Crack', 'D40': 'Pothole'}
+  local_test_mAP50: 0.48989777657075034
+  local_test_mAP50-95: 0.23971509002867475
+  local_photos: {'train': 574, 'val': 123, 'test': 123}
+  split_id: 3271fe4661
+  seed: 42
+  smoke_test: False
+  created: 2026-10-24 16:13
+  confidence_thresholds: {'Crack': 0.13, 'Pothole': 0.25, 'Rut': 0.16}
+
+TEST FINE-TUNED VS ORIGINAL
+                         original (merged) precision  original (merged) recall  original (merged) F1  fine-tuned precision  fine-tuned recall  fine-tuned F1  precision change  recall change  F1 change
+Crack                                          0.250                     0.170                 0.202                 0.465              0.500          0.482             0.215          0.330      0.280
+Pothole                                        0.167                     0.105                 0.129                 0.750              0.474          0.581             0.583          0.368      0.452
+Rut                                            0.000                     0.000                 0.000                 0.435              0.345          0.385             0.435          0.345      0.385
+macro (all classes)                            0.139                     0.092                 0.110                 0.550              0.440          0.482             0.411          0.348      0.372
+macro (Crack + Pothole)                        0.208                     0.138                 0.166                 0.607              0.487          0.531             0.399          0.349      0.366
+
+LOCAL TEST METRICS (FINE-TUNED)
+                         threshold  precision  recall    F1     TP     FP     FN  real_boxes
+Crack                        0.130      0.465   0.500 0.482 53.000 61.000 53.000     106.000
+Pothole                      0.250      0.750   0.474 0.581  9.000  3.000 10.000      19.000
+Rut                          0.160      0.435   0.345 0.385 10.000 13.000 19.000      29.000
+macro (all classes)            NaN      0.550   0.440 0.482 72.000 77.000 82.000     154.000
+macro (Crack + Pothole)        NaN      0.607   0.487 0.531 62.000 64.000 63.000     125.000
+
+LOCAL TEST BOX METRICS (MAP)
+            mAP50  mAP50-95  AP50_Crack  AP50_Pothole  AP50_Rut
+fine-tuned  0.490     0.240       0.531         0.550     0.388
+
+LOCAL PHOTOS AND BOXES PER SPLIT
+       photos  no damage  Crack  Pothole  Rut
+train     574        238    461       70  161
+val       123         48    103       20   30
+test      123         42    106       19   29
+
+NOTES
+  - 3-CLASS MODEL: Crack, Pothole, Rut (the classes of the local labels). It is NOT a D00 / D10 / D20 / D40 model: the app and E4 code must use artifact.json 'classes'.
+  - Trained on the local TRAIN photos only, starting from model/final_model/best.pt (backbone and neck weights kept, class outputs new). Nothing from the RDD split is used here.
+  - Thresholds were chosen on the local VALIDATION photos; the local TEST photos were used once, for these tables.
+  - 'original (merged)' = model/final_model/best.pt with ITS OWN thresholds (chosen on the RDD validation split), its D00 / D10 / D20 boxes merged into Crack (duplicates removed by NMS) and D40 = Pothole, on the same local test photos. It has no Rut class, so its Rut recall is 0 by design: compare with 'macro (Crack + Pothole)' for a fair look.
+  - The local sets are small (see the box counts): a class with few boxes in validation / test gives an unreliable threshold / precision / recall.
+  - Same settings as model/final_model.py (imported from it): model size, image size, epochs, batch size, seed, Ultralytics extras.
+  - best.pt = epoch with the best validation score; last.pt = final epoch. artifact.json belongs to best.pt.
+  - For the next experiment use ONLY the 'test' photos of local_split.csv: the train and validation photos were seen during training.
