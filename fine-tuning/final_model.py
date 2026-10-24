@@ -499,7 +499,7 @@ def main():
              "best.pt = epoch with the best validation score; last.pt = final epoch. artifact.json belongs to best.pt.",
              "For the next experiment use ONLY the 'test' photos of local_split.csv: the train and validation photos were seen during training."]
     save_results(final_dir, "Fine-tuned final model - local photos (Crack, Pothole, Rut)",
-                 {"local test: fine-tuned vs original": comparison, "local test metrics (fine-tuned)": tuned_table,
+                 {"test fine-tuned vs original": comparison, "local test metrics (fine-tuned)": tuned_table,
                   "local test box metrics (mAP)": pd.DataFrame([box], index=["fine-tuned"]), "local photos and boxes per split": box_counts},
                  {**{k: v for k, v in artifact.items() if k != "confidence_thresholds"}, "confidence_thresholds": thresholds}, notes)
     (final_dir / "README.md").write_text(
