@@ -1,0 +1,42 @@
+{
+  "model": "yolo26s.pt",
+  "source": "fine-tuned from /content/rdd-roadscan/model/final_model/best.pt: 640 px, 20 epochs, on local photos",
+  "fine_tuned_from": "/content/rdd-roadscan/model/final_model/best.pt",
+  "image_size": 640,
+  "epochs": 20,
+  "optimizer": "auto",
+  "classes": [
+    "Crack",
+    "Pothole",
+    "Rut"
+  ],
+  "confidence_thresholds": {
+    "Crack": 0.13,
+    "Pothole": 0.25,
+    "Rut": 0.16
+  },
+  "beta_per_class": {
+    "Crack": 1.0,
+    "Pothole": 2.0,
+    "Rut": 1.0
+  },
+  "thresholds_chosen_on": "local validation photos",
+  "iou_threshold": 0.5,
+  "original_to_local_classes": {
+    "D00": "Crack",
+    "D10": "Crack",
+    "D20": "Crack",
+    "D40": "Pothole"
+  },
+  "local_test_mAP50": 0.48989777657075034,
+  "local_test_mAP50-95": 0.23971509002867475,
+  "local_photos": {
+    "train": 574,
+    "val": 123,
+    "test": 123
+  },
+  "split_id": "3271fe4661",
+  "seed": 42,
+  "smoke_test": false,
+  "created": "2026-10-24 15:07"
+}
