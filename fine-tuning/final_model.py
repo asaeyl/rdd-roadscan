@@ -31,6 +31,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import re
 import shutil
 import sys
 from datetime import datetime
@@ -498,17 +499,34 @@ def main():
              "Same settings as model/final_model.py (imported from it): model size, image size, epochs, batch size, seed, Ultralytics extras.",
              "best.pt = epoch with the best validation score; last.pt = final epoch. artifact.json belongs to best.pt.",
              "For the next experiment use ONLY the 'test' photos of local_split.csv: the train and validation photos were seen during training."]
-    save_results(final_dir, "Fine-tuned final model - local photos (Crack, Pothole, Rut)",
-                 {"test fine-tuned vs original": comparison, "local test metrics (fine-tuned)": tuned_table,
-                  "local test box metrics (mAP)": pd.DataFrame([box], index=["fine-tuned"]), "local photos and boxes per split": box_counts},
-                 {**{k: v for k, v in artifact.items() if k != "confidence_thresholds"}, "confidence_thresholds": thresholds}, notes)
+    tables = {"test fine-tuned vs original": comparison, "local test metrics (fine-tuned)": tuned_table,
+              "local test box metrics (mAP)": pd.DataFrame([box], index=["fine-tuned"]), "local photos and boxes per split": box_counts}
+    settings = {**{k: v for k, v in artifact.items() if k != "confidence_thresholds"}, "confidence_thresholds": thresholds}
+
+    # ---- the plain-text results FIRST (they must never depend on the Excel step): README + one csv per table + the tables on screen
     (final_dir / "README.md").write_text(
         "# Fine-tuned final model (Crack, Pothole, Rut)\n\n`model/final_model/best.pt` trained further on the local photos (train split of `local_split.csv`), "
         f"{epochs} epochs, same settings as `model/final_model.py`, but with the 3 LOCAL classes: {', '.join(LOCAL_CLASSES)}.\n\n"
         f"Thresholds (local validation): {thresholds}\n\nLocal test mAP@0.5 = {box['mAP50']:.3f}, mAP@0.5:0.95 = {box['mAP50-95']:.3f}.\n"
-        "Only the `test` photos of `local_split.csv` may be used to judge it.\n")
-    print("\nlocal test photos - original final model (merged classes) vs fine-tuned:")
-    print(comparison.round(3).to_string())
+        "Only the `test` photos of `local_split.csv` may be used to judge it.\n\n"
+        "Tables as csv: `tables/`. Notes:\n" + "\n".join(f"- {n}" for n in notes) + "\n")
+    tables_dir = final_dir / "tables"
+    tables_dir.mkdir(exist_ok=True)
+    for table_name, table in tables.items():
+        table.to_csv(tables_dir / (re.sub(r"[^A-Za-z0-9]+", "_", table_name).strip("_").lower() + ".csv"))
+    print("\nlocal photos and boxes per split:"); print(box_counts.to_string())
+    print("\nconfidence thresholds:", thresholds)
+    print("\nlocal test photos - fine-tuned model:"); print(tuned_table.round(3).to_string())
+    print("\nlocal test photos - original final model (merged classes) vs fine-tuned:"); print(comparison.round(3).to_string())
+    print("\nmAP on the local test photos:", {k: round(v, 3) for k, v in box.items()})
+
+    # ---- Excel + txt (project helper); if it fails the run is NOT lost: everything above is already saved
+    try:
+        save_results(final_dir, "Fine-tuned final model - local photos (Crack, Pothole, Rut)", tables, settings, notes)
+    except Exception:
+        import traceback
+        traceback.print_exc()
+        print("\nWARNING: results.xlsx / results.txt could not be written completely (error above). The tables are saved as csv in", tables_dir)
     print("\nFine-tuned model saved in", final_dir)
 
 
