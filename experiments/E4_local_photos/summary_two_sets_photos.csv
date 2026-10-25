@@ -1,0 +1,3 @@
+set,photos,damage detected,NO damage detected,labelled WITH damage,...damage found,labelled WITHOUT damage,...false alarm
+Set 1: team phone photos (RDD labels),28,12,16,27,1,1,0
+Set 2: Saudi dataset (detections only),217,84,133,-,-,-,-

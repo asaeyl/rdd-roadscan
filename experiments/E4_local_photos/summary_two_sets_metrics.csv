@@ -1,0 +1,6 @@
+set,photos,class,real boxes,precision,recall,F1,AP50,TP,FP,FN
+Set 1: team phone photos (RDD labels),28,D00,18,0.111,0.056,0.074,0.057,1,8,17
+Set 1: team phone photos (RDD labels),28,D10,8,0.0,0.0,0.0,0.022,0,8,8
+Set 1: team phone photos (RDD labels),28,D20,2,0.0,0.0,0.0,0.027,0,1,2
+Set 1: team phone photos (RDD labels),28,D40,21,0.0,0.0,0.0,0.0,0,1,21
+Set 1: team phone photos (RDD labels),28,macro,49,0.028,0.014,0.019,0.026,1,18,48
