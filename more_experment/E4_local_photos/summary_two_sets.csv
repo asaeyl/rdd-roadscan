@@ -1,0 +1,9 @@
+set,photos,class,original F1,fine-tuned F1,fine-tuned precision,fine-tuned recall
+Set 1: team phone photos (RDD labels),28,Crack,0.044,0.05,0.083,0.036
+Set 1: team phone photos (RDD labels),28,Pothole,0.0,0.0,0.0,0.0
+Set 1: team phone photos (RDD labels),28,macro (Crack + Pothole),0.022,0.025,0.042,0.018
+"Set 2: Saudi dataset (Crack, Pothole, Rut)",217,Crack,0.246,0.429,0.389,0.479
+"Set 2: Saudi dataset (Crack, Pothole, Rut)",217,Pothole,0.095,0.56,0.5,0.636
+"Set 2: Saudi dataset (Crack, Pothole, Rut)",217,Rut,0.0,0.347,0.415,0.298
+"Set 2: Saudi dataset (Crack, Pothole, Rut)",217,macro (all classes),0.114,0.445,0.435,0.471
+"Set 2: Saudi dataset (Crack, Pothole, Rut)",217,macro (Crack + Pothole),0.17,0.495,0.444,0.558
