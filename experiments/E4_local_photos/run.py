@@ -218,6 +218,7 @@ def main():
     parser.add_argument("--out-dir", default="", help="where the pictures go (default: <local-dir>/e4_output)")
     parser.add_argument("--no-labels", action="store_true", help="ignore the labels folder: only look at the detections")
     parser.add_argument("--allow-photos-in-repo", action="store_true", help="allow --out-dir inside the repository (it is PUBLIC: only for photos you may publish)")
+    parser.add_argument("--result-dir", default="", help="where the numbers go (default: experiments/E4_local_photos/results)")
     args = parser.parse_args()
 
     folder = local_dir(args.local_dir)
@@ -227,7 +228,7 @@ def main():
     if PROJECT_ROOT in out_dir.resolve().parents and not args.allow_photos_in_repo:
         sys.exit(f"{out_dir} is inside the repository, which is public. Choose a folder on Google Drive for --out-dir.")
     (out_dir / "annotated").mkdir(parents=True, exist_ok=True)
-    results_dir = cfg.EXPERIMENTS_DIR / NAME / "results"
+    results_dir = Path(args.result_dir) if args.result_dir else cfg.EXPERIMENTS_DIR / NAME / "results"
     results_dir.mkdir(parents=True, exist_ok=True)
 
     final = get_final()
