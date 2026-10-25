@@ -1,0 +1,29 @@
+,photo,status,detections,n_detections,real_boxes,found,false_alarms,missed
+0,Saudi_000001.jpeg,MISSED,nothing,0,2,0,0,2
+1,Saudi_0000010.jpeg,MISSED,nothing,0,3,0,0,3
+2,Saudi_0000011.jpeg,"partly (found 0, missed 1, false 2)","Crack 0.36, Crack 0.13",2,1,0,2,1
+3,Saudi_0000012.jpeg,MISSED,nothing,0,1,0,0,1
+4,Saudi_0000013.jpeg,correct: no damage,nothing,0,0,0,0,0
+5,Saudi_0000014.jpeg,"partly (found 0, missed 1, false 1)",Crack 0.26,1,1,0,1,1
+6,Saudi_0000015.jpeg,"partly (found 0, missed 3, false 1)",Crack 0.17,1,3,0,1,3
+7,Saudi_0000016.jpeg,MISSED,nothing,0,3,0,0,3
+8,Saudi_0000017.jpeg,MISSED,nothing,0,2,0,0,2
+9,Saudi_0000018.jpeg,MISSED,nothing,0,1,0,0,1
+10,Saudi_0000019.jpeg,MISSED,nothing,0,1,0,0,1
+11,Saudi_000002.jpeg,MISSED,nothing,0,1,0,0,1
+12,Saudi_0000020.jpeg,MISSED,nothing,0,2,0,0,2
+13,Saudi_0000021.jpeg,MISSED,nothing,0,1,0,0,1
+14,Saudi_0000022.jpeg,"partly (found 0, missed 3, false 1)",Crack 0.35,1,3,0,1,3
+15,Saudi_0000023.jpeg,MISSED,nothing,0,2,0,0,2
+16,Saudi_0000024.jpeg,MISSED,nothing,0,2,0,0,2
+17,Saudi_0000025.jpeg,"partly (found 0, missed 4, false 1)",Crack 0.25,1,4,0,1,4
+18,Saudi_0000026.jpeg,MISSED,nothing,0,3,0,0,3
+19,Saudi_0000027.jpeg,"partly (found 0, missed 1, false 2)","Crack 0.43, Crack 0.32",2,1,0,2,1
+20,Saudi_0000028.jpeg,"partly (found 1, missed 0, false 1)","Crack 0.48, Crack 0.26",2,1,1,1,0
+21,Saudi_000003.jpeg,"partly (found 0, missed 2, false 1)",Crack 0.17,1,2,0,1,2
+22,Saudi_000004.jpeg,MISSED,nothing,0,1,0,0,1
+23,Saudi_000005.jpeg,MISSED,nothing,0,1,0,0,1
+24,Saudi_000006.jpeg,MISSED,nothing,0,1,0,0,1
+25,Saudi_000007.jpeg,MISSED,nothing,0,1,0,0,1
+26,Saudi_000008.jpeg,"partly (found 0, missed 3, false 1)",Crack 0.44,1,3,0,1,3
+27,Saudi_000009.jpeg,MISSED,nothing,0,2,0,0,2

@@ -1,0 +1,91 @@
+E4 (fine-tuned model) - RDD-Data
+================================
+created: 2026-10-25 09:52
+
+SETTINGS
+  experiment: E4_local_photos
+  set: RDD-Data
+  label set: rdd
+  photos: 28
+  model: fine-tuning/final_model (Crack, Pothole, Rut)
+  image size: 640
+  thresholds: {'Crack': 0.13, 'Pothole': 0.25, 'Rut': 0.16}
+  fine-tuned split id: 3271fe4661
+  pictures written to: /content/e4ft_output_data
+
+SUMMARY
+                                          value
+photos                                       28
+photos with damage detected                   9
+photos with NO damage detected               19
+photos WITH damage (labels)                  27
+...of which at least one damage found         1
+photos WITHOUT damage (labels)                1
+...of which the model raised a false ...      0
+Rut detections (not judged: old label...     14
+
+FINE-TUNED PER CLASS
+                         threshold  precision  recall    F1    TP     FP     FN  real_boxes  AP50 (no threshold)
+Crack                        0.130      0.083   0.036 0.050 1.000 11.000 27.000      28.000                0.027
+Pothole                      0.250      0.000   0.000 0.000 0.000  0.000 21.000      21.000                0.126
+macro (Crack + Pothole)        NaN      0.042   0.018 0.025 1.000 11.000 48.000      49.000                0.076
+
+ORIGINAL MERGED PER CLASS
+                         threshold  precision  recall    F1    TP     FP     FN  real_boxes  AP50 (no threshold)
+Crack                        0.000      0.059   0.036 0.044 1.000 16.000 27.000      28.000                0.037
+Pothole                      0.000      0.000   0.000 0.000 0.000  1.000 21.000      21.000                0.000
+macro (Crack + Pothole)        NaN      0.029   0.018 0.022 1.000 17.000 48.000      49.000                0.018
+
+FINE-TUNED VS ORIGINAL
+                         original (merged) precision  original (merged) recall  original (merged) F1  original (merged) AP50 (no threshold)  fine-tuned precision  fine-tuned recall  fine-tuned F1  fine-tuned AP50 (no threshold)  precision change  recall change  F1 change  AP50 (no threshold) change
+Crack                                          0.059                     0.036                 0.044                                  0.037                 0.083              0.036          0.050                           0.027             0.025          0.000      0.006                      -0.010
+Pothole                                        0.000                     0.000                 0.000                                  0.000                 0.000              0.000          0.000                           0.126             0.000          0.000      0.000                       0.126
+macro (Crack + Pothole)                        0.029                     0.018                 0.022                                  0.018                 0.042              0.018          0.025                           0.076             0.012          0.000      0.003                       0.058
+
+PER PHOTO
+                 photo                               status              detections  n_detections  real_boxes  found  false_alarms  missed
+0    Saudi_000001.jpeg                               MISSED                 nothing             0           2      0             0       2
+1   Saudi_0000010.jpeg                               MISSED                 nothing             0           3      0             0       3
+2   Saudi_0000011.jpeg  partly (found 0, missed 1, false 2)  Crack 0.36, Crack 0.13             2           1      0             2       1
+3   Saudi_0000012.jpeg                               MISSED                 nothing             0           1      0             0       1
+4   Saudi_0000013.jpeg                   correct: no damage                 nothing             0           0      0             0       0
+5   Saudi_0000014.jpeg  partly (found 0, missed 1, false 1)              Crack 0.26             1           1      0             1       1
+6   Saudi_0000015.jpeg  partly (found 0, missed 3, false 1)              Crack 0.17             1           3      0             1       3
+7   Saudi_0000016.jpeg                               MISSED                 nothing             0           3      0             0       3
+8   Saudi_0000017.jpeg                               MISSED                 nothing             0           2      0             0       2
+9   Saudi_0000018.jpeg                               MISSED                 nothing             0           1      0             0       1
+10  Saudi_0000019.jpeg                               MISSED                 nothing             0           1      0             0       1
+11   Saudi_000002.jpeg                               MISSED                 nothing             0           1      0             0       1
+12  Saudi_0000020.jpeg                               MISSED                 nothing             0           2      0             0       2
+13  Saudi_0000021.jpeg                               MISSED                 nothing             0           1      0             0       1
+14  Saudi_0000022.jpeg  partly (found 0, missed 3, false 1)              Crack 0.35             1           3      0             1       3
+15  Saudi_0000023.jpeg                               MISSED                 nothing             0           2      0             0       2
+16  Saudi_0000024.jpeg                               MISSED                 nothing             0           2      0             0       2
+17  Saudi_0000025.jpeg  partly (found 0, missed 4, false 1)              Crack 0.25             1           4      0             1       4
+18  Saudi_0000026.jpeg                               MISSED                 nothing             0           3      0             0       3
+19  Saudi_0000027.jpeg  partly (found 0, missed 1, false 2)  Crack 0.43, Crack 0.32             2           1      0             2       1
+20  Saudi_0000028.jpeg  partly (found 1, missed 0, false 1)  Crack 0.48, Crack 0.26             2           1      1             1       0
+21   Saudi_000003.jpeg  partly (found 0, missed 2, false 1)              Crack 0.17             1           2      0             1       2
+22   Saudi_000004.jpeg                               MISSED                 nothing             0           1      0             0       1
+23   Saudi_000005.jpeg                               MISSED                 nothing             0           1      0             0       1
+24   Saudi_000006.jpeg                               MISSED                 nothing             0           1      0             0       1
+25   Saudi_000007.jpeg                               MISSED                 nothing             0           1      0             0       1
+26   Saudi_000008.jpeg  partly (found 0, missed 3, false 1)              Crack 0.44             1           3      0             1       3
+27   Saudi_000009.jpeg                               MISSED                 nothing             0           2      0             0       2
+
+ORIGINAL OWN 4 CLASSES
+       threshold  precision  recall    F1    TP     FP     FN  real_boxes
+D00        0.250      0.111   0.056 0.074 1.000  8.000 17.000      18.000
+D10        0.280      0.000   0.000 0.000 0.000  8.000  8.000       8.000
+D20        0.240      0.000   0.000 0.000 0.000  1.000  2.000       2.000
+D40        0.130      0.000   0.000 0.000 0.000  1.000 21.000      21.000
+macro        NaN      0.028   0.014 0.019 1.000 18.000 48.000      49.000
+
+NOTES
+  - No training, no tuning on these photos: the fine-tuned model and its thresholds (chosen on the fine-tuning VALIDATION photos) were only APPLIED.
+  - Photos that were used for fine-tuning (train / validation, by file name or source name) are left out, unless --keep-seen was given.
+  - Label set 'rdd': old RDD labels merged into Crack (D00 + D10 + D20) and Pothole (D40); Rut is not judged because these labels have no Rut.
+  - 'original (merged)' = model/final_model/best.pt with its own thresholds, D00 / D10 / D20 merged into Crack (NMS), D40 = Pothole. It has no Rut class: its Rut recall is 0 by design; compare 'macro (Crack + Pothole)'.
+  - Solid coloured boxes = fine-tuned detections above the thresholds; white dashed = your labels.
+  - Pictures are in /content/e4ft_output_data (NOT in the repository: it is public).
+  - Small test sets give noisy numbers; a class with few real boxes has an unreliable precision / recall.

@@ -1,0 +1,9 @@
+,value
+photos,28
+photos with damage detected,9
+photos with NO damage detected,19
+photos WITH damage (labels),27
+...of which at least one damage found,1
+photos WITHOUT damage (labels),1
+...of which the model raised a false alarm,0
+Rut detections (not judged: old labels have no Rut),14
