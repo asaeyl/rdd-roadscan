@@ -1,0 +1,277 @@
+E4 (fine-tuned model) - RDD-test
+================================
+created: 2026-10-25 10:00
+
+SETTINGS
+  experiment: E4_local_photos
+  set: RDD-test
+  label set: local
+  photos: 217
+  model: fine-tuning/final_model (Crack, Pothole, Rut)
+  image size: 640
+  thresholds: {'Crack': 0.13, 'Pothole': 0.25, 'Rut': 0.16}
+  fine-tuned split id: 3271fe4661
+  pictures written to: /content/e4ft_output_test
+
+SUMMARY
+                                          value
+photos                                      217
+photos with damage detected                 135
+photos with NO damage detected               82
+photos WITH damage (labels)                 144
+...of which at least one damage found       105
+photos WITHOUT damage (labels)               73
+...of which the model raised a false ...      7
+
+FINE-TUNED PER CLASS
+                         threshold  precision  recall    F1      TP      FP      FN  real_boxes  AP50 (no threshold)
+Crack                        0.130      0.389   0.479 0.429 105.000 165.000 114.000     219.000                0.406
+Pothole                      0.250      0.500   0.636 0.560   7.000   7.000   4.000      11.000                0.423
+Rut                          0.160      0.415   0.298 0.347  17.000  24.000  40.000      57.000                0.308
+macro (all classes)            NaN      0.435   0.471 0.445 129.000 196.000 158.000     287.000                0.379
+macro (Crack + Pothole)        NaN      0.444   0.558 0.495 112.000 172.000 118.000     230.000                0.415
+
+ORIGINAL MERGED PER CLASS
+                         threshold  precision  recall    F1     TP     FP      FN  real_boxes  AP50 (no threshold)
+Crack                        0.000      0.341   0.192 0.246 42.000 81.000 177.000     219.000                0.166
+Pothole                      0.000      0.100   0.091 0.095  1.000  9.000  10.000      11.000                0.027
+Rut                          0.000      0.000   0.000 0.000  0.000  0.000  57.000      57.000                0.000
+macro (all classes)            NaN      0.147   0.094 0.114 43.000 90.000 244.000     287.000                0.064
+macro (Crack + Pothole)        NaN      0.221   0.141 0.170 43.000 90.000 187.000     230.000                0.096
+
+FINE-TUNED VS ORIGINAL
+                         original (merged) precision  original (merged) recall  original (merged) F1  original (merged) AP50 (no threshold)  fine-tuned precision  fine-tuned recall  fine-tuned F1  fine-tuned AP50 (no threshold)  precision change  recall change  F1 change  AP50 (no threshold) change
+Crack                                          0.341                     0.192                 0.246                                  0.166                 0.389              0.479          0.429                           0.406             0.047          0.288      0.184                       0.240
+Pothole                                        0.100                     0.091                 0.095                                  0.027                 0.500              0.636          0.560                           0.423             0.400          0.545      0.465                       0.396
+Rut                                            0.000                     0.000                 0.000                                  0.000                 0.415              0.298          0.347                           0.308             0.415          0.298      0.347                       0.308
+macro (all classes)                            0.147                     0.094                 0.114                                  0.064                 0.435              0.471          0.445                           0.379             0.287          0.377      0.332                       0.315
+macro (Crack + Pothole)                        0.221                     0.141                 0.170                                  0.096                 0.444              0.558          0.495                           0.415             0.224          0.417      0.324                       0.318
+
+PER PHOTO
+                                       photo                               status                               detections  n_detections  real_boxes  found  false_alarms  missed
+0    10333d4fc80dac0efc33e0f274266d39_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+1    1748961da013aa6b920f8a6f18547e69_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+2    17498f8e4591a6004cdafd1abb05640e_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+3    198521dc10ccce315dd67c2a195f1945_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+4    5777a69e66d025cb6620cb37d4d71b90_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+5    78165b78-8683-4dc9-af80-997b874aa0fa...  partly (found 0, missed 2, false 2)                 Pothole 0.29, Crack 0.21             2           2      0             2       2
+6    9b63bb7e811e6a03cf9a791ac6f32479_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+7    9ba73402ab1adf4c30df98bbfa6151e0_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+8    9c8ee8a70628d6dab451fdea99ac7c6e_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+9    9e3c9ae0d3e6390d8d12db242e06bc57_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+10   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 0, false 1)                   Pothole 0.65, Rut 0.40             2           1      1             1       0
+11   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 1, false 1)                                 Rut 0.38             1           1      0             1       1
+12   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                            all found                             Pothole 0.60             1           1      1             0       0
+13   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 1, false 1)                                 Rut 0.20             1           1      0             1       1
+14   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 0, false 1)                       Rut 0.36, Rut 0.18             2           1      1             1       0
+15   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           2      0             0       2
+16   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 0, false 1)                       Rut 0.36, Rut 0.26             2           1      1             1       0
+17   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 1, false 1)                                 Rut 0.30             1           1      0             1       1
+18   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 1, false 2)               Pothole 0.81, Pothole 0.25             2           1      0             2       1
+19   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 2, false 0)                                 Rut 0.44             1           3      1             0       2
+20   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 2, false 0)                             Pothole 0.27             1           3      1             0       2
+21   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 1, false 1)                                 Rut 0.26             1           1      0             1       1
+22   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+23   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 0, false 1)                   Rut 0.33, Pothole 0.33             2           1      1             1       0
+24   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                            all found                                 Rut 0.51             1           1      1             0       0
+25   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 4, false 0)                                 Rut 0.61             1           5      1             0       4
+26   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 1, false 1)                   Pothole 0.35, Rut 0.18             2           2      1             1       1
+27   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 1, false 1)                                 Rut 0.47             1           1      0             1       1
+28   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                               MISSED                                  nothing             0           1      0             0       1
+29   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 2, missed 1, false 0)                       Rut 0.58, Rut 0.44             2           3      2             0       1
+30   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 0, false 1)                   Pothole 0.54, Rut 0.19             2           1      1             1       0
+31   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...                            all found                                 Rut 0.52             1           1      1             0       0
+32   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 1, false 1)                                 Rut 0.23             1           1      0             1       1
+33   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 2, false 3)  Pothole 0.45, Rut 0.37, Rut 0.26, Ru...             4           3      1             3       2
+34   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 0, false 1)                   Pothole 0.57, Rut 0.37             2           1      1             1       0
+35   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 0, missed 3, false 1)                                 Rut 0.31             1           3      0             1       3
+36   DATA-WORKATTACH-FILE-MOMRA-OPS-CS-WO...  partly (found 1, missed 3, false 1)                   Pothole 0.59, Rut 0.30             2           4      1             1       3
+37   IMG_2297_JPG.rf.04dafaf2c17f2eca2f1e...  partly (found 1, missed 0, false 2)       Crack 0.27, Crack 0.16, Crack 0.15             3           1      1             2       0
+38   IMG_2383_JPG.rf.ecd3e870594218a04b22...  partly (found 0, missed 1, false 1)                                 Rut 0.21             1           1      0             1       1
+39   IMG_2539_JPG.rf.a98dcc3d0179b4a69c1b...  partly (found 1, missed 0, false 1)               Pothole 0.46, Pothole 0.43             2           1      1             1       0
+40   IMG_2577_JPG.rf.784777744ccc19304145...  partly (found 0, missed 1, false 1)                                 Rut 0.34             1           1      0             1       1
+41   IMG_2578_JPG.rf.47d4ec9005885aa6f291...                               MISSED                                  nothing             0           2      0             0       2
+42   IMG_2636_JPG.rf.c1b4b40b70dd005375d1...                               MISSED                                  nothing             0           2      0             0       2
+43   IMG_2695_JPG.rf.69967d138fc2c14937d1...  partly (found 0, missed 1, false 1)                                 Rut 0.34             1           1      0             1       1
+44   IMG_2698_JPG.rf.b15d76faa767bf5e07e5...                            all found                                 Rut 0.34             1           1      1             0       0
+45   IMG_2699_JPG.rf.ad9ba71196271f240c4b...                               MISSED                                  nothing             0           1      0             0       1
+46   IMG_2711_JPG.rf.feca6503055d5e2d6760...                               MISSED                                  nothing             0           1      0             0       1
+47   IMG_2715_JPG.rf.ecd65313567a59596a55...                               MISSED                                  nothing             0           1      0             0       1
+48   IMG_2718_JPG.rf.f24b6b6130f7f1dab027...                            all found                                 Rut 0.29             1           1      1             0       0
+49   IMG_2746_JPG.rf.084914feb2032af12b24...                               MISSED                                  nothing             0           2      0             0       2
+50   IMG_2799_JPG.rf.a45d70b1180809ec70bf...                               MISSED                                  nothing             0           1      0             0       1
+51   IMG_2802_JPG.rf.226f9dcbf9925fe82cad...                            all found                               Crack 0.21             1           1      1             0       0
+52   IMG_2854_JPG.rf.96a1b629861545cfb63b...                            all found                               Crack 0.13             1           1      1             0       0
+53   IMG_2855_JPG.rf.d5a0d4ca6845ed5864fd...                               MISSED                                  nothing             0           1      0             0       1
+54   IMG_2860_JPG.rf.98c6221668b24a1febab...                               MISSED                                  nothing             0           2      0             0       2
+55   IMG_2862_JPG.rf.97fcbbfb8d853471330d...  partly (found 0, missed 2, false 1)                                 Rut 0.35             1           2      0             1       2
+56   IMG_2866_JPG.rf.17b3b9ba61bc3d6f2a55...  partly (found 1, missed 0, false 2)           Crack 0.37, Rut 0.28, Rut 0.21             3           1      1             2       0
+57   IMG_2876_JPG.rf.380834c49b03b3adfc75...  partly (found 1, missed 1, false 1)                   Crack 0.18, Crack 0.14             2           2      1             1       1
+58   IMG_2880_JPG.rf.34d41a826c33ed8b245b...  partly (found 1, missed 0, false 1)                       Rut 0.28, Rut 0.22             2           1      1             1       0
+59   IMG_2884_JPG.rf.1a5a076219552820e9bd...  partly (found 0, missed 2, false 1)                                 Rut 0.20             1           2      0             1       2
+60   IMG_2885_JPG.rf.284173ba7d836795f67c...  partly (found 1, missed 0, false 1)                       Rut 0.21, Rut 0.17             2           1      1             1       0
+61   IMG_2886_JPG.rf.7c8d5d22a2914519fd4e...                            all found                                 Rut 0.20             1           1      1             0       0
+62   IMG_3336_JPG.rf.71130114db844b076130...                          FALSE ALARM                               Crack 0.14             1           0      0             1       0
+63   IMG_3543_JPG.rf.3042a7d03e7396d0aae5...                   correct: no damage                                  nothing             0           0      0             0       0
+64   IMG_3976_JPG.rf.a122512ba7463ca13b37...                   correct: no damage                                  nothing             0           0      0             0       0
+65   IMG_4377_JPG.rf.a9226a2aa706c12417fa...                               MISSED                                  nothing             0           1      0             0       1
+66   IMG_4396_JPG.rf.8e1f65777bd6ef7cdc4d...  partly (found 0, missed 1, false 3)       Crack 0.47, Crack 0.35, Crack 0.29             3           1      0             3       1
+67   IMG_4399_JPG.rf.99484df6190035c1ae95...                   correct: no damage                                  nothing             0           0      0             0       0
+68   IMG_4513_JPG.rf.ab7078ba7fa9b9b3f5ae...                               MISSED                                  nothing             0           1      0             0       1
+69   IMG_8843_JPG.rf.778f0182e2a76ada6b02...                   correct: no damage                                  nothing             0           0      0             0       0
+70   IMG_8845_JPG.rf.8c5545917519f2337cbd...                   correct: no damage                                  nothing             0           0      0             0       0
+71   IMG_8846_JPG.rf.f7035a93ae581a24fd4a...                   correct: no damage                                  nothing             0           0      0             0       0
+72   IMG_8847_JPG.rf.2560f87f458a9f67a746...                   correct: no damage                                  nothing             0           0      0             0       0
+73   IMG_8851_JPG.rf.025e46ac7decb7be880f...                   correct: no damage                                  nothing             0           0      0             0       0
+74   IMG_8852_JPG.rf.4b027af9c8b23c3d24f2...                   correct: no damage                                  nothing             0           0      0             0       0
+75   IMG_8854_JPG.rf.0be6db2a240f531c3960...                   correct: no damage                                  nothing             0           0      0             0       0
+76   IMG_8855_JPG.rf.3e29998821d3a0c780d0...                   correct: no damage                                  nothing             0           0      0             0       0
+77   IMG_8856_JPG.rf.de6217485f593ac1a855...                   correct: no damage                                  nothing             0           0      0             0       0
+78   IMG_8860_JPG.rf.cedc74df0d9760c01a27...                   correct: no damage                                  nothing             0           0      0             0       0
+79   IMG_8865_JPG.rf.84046f5a0e03dc8d4945...                   correct: no damage                                  nothing             0           0      0             0       0
+80   IMG_8866_JPG.rf.23216545695a4871dfb6...                   correct: no damage                                  nothing             0           0      0             0       0
+81   IMG_8870_JPG.rf.6cbe833127ea729ed629...                   correct: no damage                                  nothing             0           0      0             0       0
+82   IMG_8874_JPG.rf.9bb6bac9c1cdfcc1913b...                   correct: no damage                                  nothing             0           0      0             0       0
+83   IMG_8875_JPG.rf.b04ca2236c03777262d3...                   correct: no damage                                  nothing             0           0      0             0       0
+84   IMG_8883_JPG.rf.ef18ba109927f1282689...                          FALSE ALARM                               Crack 0.24             1           0      0             1       0
+85   IMG_8886_JPG.rf.a2cb736bda71c7998053...  partly (found 1, missed 0, false 2)       Crack 0.59, Crack 0.53, Crack 0.14             3           1      1             2       0
+86   IMG_8888_JPG.rf.ff0e88f49043f999906b...                   correct: no damage                                  nothing             0           0      0             0       0
+87   IMG_8897_JPG.rf.be66f7c6901f2194e0ef...                   correct: no damage                                  nothing             0           0      0             0       0
+88   IMG_8898_JPG.rf.0c652a3274d7d79b8b57...                   correct: no damage                                  nothing             0           0      0             0       0
+89   IMG_8932_JPG.rf.64f3bb10d5beb025c96f...  partly (found 1, missed 0, false 3)  Crack 0.37, Crack 0.28, Crack 0.16, ...             4           1      1             3       0
+90   IMG_8936_JPG.rf.d2d7d4703fa73415a352...  partly (found 1, missed 2, false 1)                   Crack 0.40, Crack 0.24             2           3      1             1       2
+91   IMG_8938_JPG.rf.db1f69150e09ab8992a8...  partly (found 0, missed 4, false 2)                   Crack 0.33, Crack 0.13             2           4      0             2       4
+92   IMG_8939_JPG.rf.d04077845b5723f071e8...                            all found                               Crack 0.24             1           1      1             0       0
+93   IMG_8945_JPG.rf.10ed2f9b14f0ed0c68fc...  partly (found 1, missed 1, false 3)  Crack 0.29, Crack 0.23, Crack 0.17, ...             4           2      1             3       1
+94   IMG_8948_JPG.rf.6c6a91e518d3661d9d4c...                            all found                               Crack 0.43             1           1      1             0       0
+95   IMG_8951_JPG.rf.617d476120a09a56fccd...  partly (found 1, missed 0, false 3)  Crack 0.19, Crack 0.17, Crack 0.15, ...             4           1      1             3       0
+96   IMG_8958_JPG.rf.db9fb84d8b02837c3a42...  partly (found 1, missed 0, false 1)                   Crack 0.30, Crack 0.27             2           1      1             1       0
+97   IMG_8959_JPG.rf.c5ef77bc17dd33a9cf20...  partly (found 2, missed 4, false 3)  Crack 0.50, Crack 0.30, Crack 0.21, ...             5           6      2             3       4
+98   IMG_8974_JPG.rf.354ba72be55557d0210c...  partly (found 1, missed 0, false 1)                   Crack 0.71, Crack 0.38             2           1      1             1       0
+99   IMG_8975_JPG.rf.03314b5e910f6f5da7fb...  partly (found 0, missed 2, false 3)       Crack 0.52, Crack 0.30, Crack 0.13             3           2      0             3       2
+100  IMG_8979_JPG.rf.89e32ce7c85443adaf78...                            all found                               Crack 0.59             1           1      1             0       0
+101  IMG_8980_JPG.rf.a8d9d277a601f9979791...                            all found                               Crack 0.78             1           1      1             0       0
+102  IMG_8984_JPG.rf.d0b418328569bba03720...  partly (found 1, missed 0, false 3)  Crack 0.29, Crack 0.25, Crack 0.13, ...             4           1      1             3       0
+103  IMG_8996_JPG.rf.d1f7af196e1adc33c98d...  partly (found 1, missed 0, false 1)                   Crack 0.31, Crack 0.26             2           1      1             1       0
+104  IMG_8998_JPG.rf.7ab09134825974ba5b51...  partly (found 2, missed 1, false 2)  Crack 0.60, Crack 0.57, Crack 0.36, ...             4           3      2             2       1
+105  IMG_8999_JPG.rf.6486e162b8e0d9dfd8d7...  partly (found 1, missed 1, false 2)       Crack 0.27, Crack 0.22, Crack 0.18             3           2      1             2       1
+106  IMG_9001_JPG.rf.94387a3584dbfa76db39...                               MISSED                                  nothing             0           1      0             0       1
+107  IMG_9002_JPG.rf.c50ebea816bc3d449fe3...  partly (found 1, missed 2, false 4)  Crack 0.61, Crack 0.46, Crack 0.31, ...             5           3      1             4       2
+108  IMG_9003_JPG.rf.659ccae3e2c5235f3750...  partly (found 2, missed 1, false 2)  Crack 0.32, Crack 0.24, Crack 0.18, ...             4           3      2             2       1
+109  IMG_9004_JPG.rf.e9ab4ca51133cbacbeb6...  partly (found 0, missed 2, false 3)       Crack 0.47, Crack 0.15, Crack 0.14             3           2      0             3       2
+110  IMG_9006_JPG.rf.11d25b54b3a1ba0ef824...  partly (found 2, missed 9, false 2)  Crack 0.44, Crack 0.28, Crack 0.16, ...             4          11      2             2       9
+111  IMG_9008_JPG.rf.3f9fe3969f54850dbd23...  partly (found 4, missed 2, false 4)  Crack 0.25, Crack 0.23, Crack 0.22, ...             8           6      4             4       2
+112  IMG_9009_JPG.rf.61938bd341db36aa9a53...                          FALSE ALARM  Crack 0.62, Crack 0.28, Crack 0.25, ...             6           0      0             6       0
+113  IMG_9013_JPG.rf.2aca03f6a4691b524af9...  partly (found 1, missed 4, false 3)  Crack 0.27, Crack 0.23, Crack 0.22, ...             4           5      1             3       4
+114  IMG_9023_JPG.rf.2247f416017a43013164...  partly (found 1, missed 8, false 2)       Crack 0.26, Crack 0.14, Crack 0.13             3           9      1             2       8
+115  IMG_9024_JPG.rf.16f5492da6c5be9e1786...  partly (found 2, missed 1, false 7)  Crack 0.48, Crack 0.28, Crack 0.24, ...             9           3      2             7       1
+116  IMG_9025_JPG.rf.c9c8420d4e2ed69fcf6c...  partly (found 2, missed 0, false 2)  Crack 0.54, Crack 0.41, Crack 0.28, ...             4           2      2             2       0
+117  IMG_9026_JPG.rf.705ec1ea40fdf97843dd...  partly (found 1, missed 1, false 2)       Crack 0.38, Crack 0.22, Crack 0.21             3           2      1             2       1
+118  IMG_9027_JPG.rf.1e57eea9651ece7e70f6...  partly (found 1, missed 1, false 3)  Crack 0.44, Crack 0.33, Crack 0.32, ...             4           2      1             3       1
+119  IMG_9028_JPG.rf.c19ec2e5c7488ca42e32...  partly (found 1, missed 6, false 4)  Crack 0.35, Crack 0.31, Crack 0.24, ...             5           7      1             4       6
+120  IMG_9030_JPG.rf.bbd10e8a3f2df608564f...  partly (found 3, missed 1, false 5)  Crack 0.66, Crack 0.31, Crack 0.27, ...             8           4      3             5       1
+121  IMG_9033_JPG.rf.bf3834992edea7e70554...  partly (found 3, missed 3, false 5)  Crack 0.58, Crack 0.27, Crack 0.17, ...             8           6      3             5       3
+122  IMG_9034_JPG.rf.5665d8d2a9b760471407...  partly (found 2, missed 5, false 3)  Crack 0.32, Crack 0.29, Crack 0.20, ...             5           7      2             3       5
+123  IMG_9037_JPG.rf.1670af8c2addef7f5b7e...  partly (found 0, missed 4, false 3)       Crack 0.35, Crack 0.22, Crack 0.13             3           4      0             3       4
+124  IMG_9038_JPG.rf.4720d03625dd9e4b9ae5...  partly (found 1, missed 1, false 1)                   Crack 0.44, Crack 0.36             2           2      1             1       1
+125  IMG_9039_JPG.rf.8bac3b8d684d7d3d7067...  partly (found 1, missed 0, false 5)  Crack 0.47, Crack 0.46, Crack 0.36, ...             6           1      1             5       0
+126  IMG_9040_JPG.rf.5cd142e0369846c23d74...  partly (found 2, missed 1, false 2)  Crack 0.49, Crack 0.41, Crack 0.14, ...             4           3      2             2       1
+127  IMG_9041_JPG.rf.92c12d0be936ab5962f3...  partly (found 2, missed 1, false 1)       Crack 0.27, Crack 0.18, Crack 0.15             3           3      2             1       1
+128  IMG_9042_JPG.rf.8269542f1051a582d429...  partly (found 1, missed 1, false 2)       Crack 0.47, Crack 0.30, Crack 0.24             3           2      1             2       1
+129  IMG_9043_JPG.rf.d6599c0e794356faa355...  partly (found 1, missed 2, false 0)                               Crack 0.36             1           3      1             0       2
+130  IMG_9044_JPG.rf.228df5cf5166278109b7...  partly (found 2, missed 3, false 4)  Crack 0.39, Crack 0.37, Crack 0.37, ...             6           5      2             4       3
+131  IMG_9046_JPG.rf.38b938fa54aedcbe82d0...  partly (found 0, missed 3, false 1)                               Crack 0.62             1           3      0             1       3
+132  IMG_9048_JPG.rf.114e51394c236e2ba0b4...  partly (found 2, missed 0, false 3)  Crack 0.43, Crack 0.36, Crack 0.29, ...             5           2      2             3       0
+133  IMG_9050_JPG.rf.a9eb263b95e46b8191a2...  partly (found 2, missed 0, false 3)  Crack 0.57, Crack 0.32, Crack 0.32, ...             5           2      2             3       0
+134  IMG_9053_JPG.rf.143a11404afcf964600e...  partly (found 3, missed 1, false 0)       Crack 0.49, Crack 0.46, Crack 0.22             3           4      3             0       1
+135  IMG_9055_JPG.rf.76799ecde6733812a90c...  partly (found 1, missed 5, false 3)  Crack 0.47, Crack 0.30, Crack 0.15, ...             4           6      1             3       5
+136  IMG_9057_JPG.rf.6b5ab13ed01b999f0ea3...  partly (found 1, missed 3, false 2)       Crack 0.39, Crack 0.26, Crack 0.16             3           4      1             2       3
+137  IMG_9058_JPG.rf.a6378c9c2b57e7558f0d...  partly (found 1, missed 5, false 4)  Crack 0.51, Crack 0.33, Crack 0.28, ...             5           6      1             4       5
+138  IMG_9064_JPG.rf.80799f962a479872ad8a...  partly (found 1, missed 0, false 1)                   Crack 0.42, Crack 0.14             2           1      1             1       0
+139  IMG_9075_JPG.rf.da6a7e4361ea10478214...  partly (found 1, missed 0, false 1)                   Crack 0.57, Crack 0.18             2           1      1             1       0
+140  IMG_9076_JPG.rf.65144620b605270e64a1...                            all found                               Crack 0.64             1           1      1             0       0
+141  IMG_9079_JPG.rf.00b4a4477af85b1fd44c...  partly (found 1, missed 1, false 0)                               Crack 0.60             1           2      1             0       1
+142  IMG_9081_JPG.rf.0dd773a8d5b42320255f...  partly (found 1, missed 0, false 1)                   Crack 0.39, Crack 0.36             2           1      1             1       0
+143  IMG_9083_JPG.rf.0d0a9fda504f25144268...                            all found                               Crack 0.56             1           1      1             0       0
+144  IMG_9084_JPG.rf.823166d047a1f8accf01...                            all found                               Crack 0.58             1           1      1             0       0
+145  IMG_9087_JPG.rf.9d76c0c1d5ab8af83edf...                            all found                               Crack 0.80             1           1      1             0       0
+146  IMG_9089_JPG.rf.f9d2cac55dca957f5770...  partly (found 1, missed 0, false 1)                   Crack 0.58, Crack 0.22             2           1      1             1       0
+147  IMG_9091_JPG.rf.ebd5b3debf41b504cc4e...                            all found                               Crack 0.17             1           1      1             0       0
+148  IMG_9094_JPG.rf.cd4b95e0719f2f5cf0d6...  partly (found 1, missed 1, false 1)                   Crack 0.55, Crack 0.48             2           2      1             1       1
+149  IMG_9095_JPG.rf.7f1c90647aa86aa43795...  partly (found 1, missed 0, false 2)       Crack 0.71, Crack 0.27, Crack 0.14             3           1      1             2       0
+150  IMG_9102_JPG.rf.c64a3366987550ed4b74...                   correct: no damage                                  nothing             0           0      0             0       0
+151  IMG_9103_JPG.rf.5df4d82316b4e97d3721...                   correct: no damage                                  nothing             0           0      0             0       0
+152  IMG_9113_JPG.rf.a8b455531ea632c60016...  partly (found 2, missed 1, false 0)                   Crack 0.76, Crack 0.70             2           3      2             0       1
+153  IMG_9119_JPG.rf.7626848323eea4c855ba...  partly (found 1, missed 3, false 2)       Crack 0.20, Crack 0.17, Crack 0.13             3           4      1             2       3
+154  IMG_9125_JPG.rf.82cd7d7d1a00497cba7e...                   correct: no damage                                  nothing             0           0      0             0       0
+155  IMG_9126_JPG.rf.35099f3f8299a5a256d3...                   correct: no damage                                  nothing             0           0      0             0       0
+156  IMG_9127_JPG.rf.d73268b74822b343a920...                            all found                               Crack 0.18             1           1      1             0       0
+157  IMG_9128_JPG.rf.0f6ac385ed95b895f7e3...                   correct: no damage                                  nothing             0           0      0             0       0
+158  IMG_9129_JPG.rf.bc7e3922756973b8cc7f...                          FALSE ALARM                   Crack 0.21, Crack 0.19             2           0      0             2       0
+159  IMG_9131_JPG.rf.9b62d1d940140b9f1796...                   correct: no damage                                  nothing             0           0      0             0       0
+160  IMG_9132_JPG.rf.e49c0567ea6fa3d18ef0...                   correct: no damage                                  nothing             0           0      0             0       0
+161  IMG_9133_JPG.rf.ddcd3b8208523f2f27bf...                   correct: no damage                                  nothing             0           0      0             0       0
+162  IMG_9136_JPG.rf.33c53c5d396742fc667b...                   correct: no damage                                  nothing             0           0      0             0       0
+163  IMG_9137_JPG.rf.705f2cf5c8e61c76e393...                   correct: no damage                                  nothing             0           0      0             0       0
+164  IMG_9139_JPG.rf.d92b92c77f9109202d8f...                   correct: no damage                                  nothing             0           0      0             0       0
+165  IMG_9146_JPG.rf.82f8f4d1a64d5b4c3ae1...                            all found                   Crack 0.29, Crack 0.29             2           2      2             0       0
+166  IMG_9149_JPG.rf.28d6eae3b300e39e37e9...                            all found                               Crack 0.58             1           1      1             0       0
+167  IMG_9155_JPG.rf.edf0e1e223d7c82157cc...                   correct: no damage                                  nothing             0           0      0             0       0
+168  IMG_9156_JPG.rf.5e5131110ca7ed816a7f...                   correct: no damage                                  nothing             0           0      0             0       0
+169  IMG_9158_JPG.rf.2ba38c381fc447ad86d7...  partly (found 1, missed 0, false 1)                   Crack 0.34, Crack 0.29             2           1      1             1       0
+170  IMG_9159_JPG.rf.e4afbfcff93d3453f465...  partly (found 0, missed 1, false 3)       Crack 0.26, Crack 0.19, Crack 0.14             3           1      0             3       1
+171  IMG_9160_JPG.rf.cb1a4324ff0101627af5...  partly (found 1, missed 0, false 1)                   Crack 0.30, Crack 0.15             2           1      1             1       0
+172  IMG_9162_JPG.rf.354e4148c06d0ddf8d6c...                            all found                               Crack 0.73             1           1      1             0       0
+173  IMG_9164_JPG.rf.d66d9e6f0f2ffdfff5e9...                            all found                               Crack 0.51             1           1      1             0       0
+174  IMG_9168_JPG.rf.7660ea8d21db52a36158...  partly (found 0, missed 1, false 1)                               Crack 0.16             1           1      0             1       1
+175  IMG_9171_JPG.rf.bbcb4b30f7771ad8e709...                            all found                               Crack 0.75             1           1      1             0       0
+176  IMG_9173_JPG.rf.3629efa3ffc932f78614...                   correct: no damage                                  nothing             0           0      0             0       0
+177  IMG_9177_JPG.rf.c76f6537c6919f4838a6...                   correct: no damage                                  nothing             0           0      0             0       0
+178  IMG_9183_JPG.rf.1863723267a092d05734...                   correct: no damage                                  nothing             0           0      0             0       0
+179  IMG_9192_JPG.rf.dc7c599ae8e4a27da668...                          FALSE ALARM                               Crack 0.25             1           0      0             1       0
+180  IMG_9196_JPG.rf.2b8af6445364c7117a2a...                   correct: no damage                                  nothing             0           0      0             0       0
+181  IMG_9207_JPG.rf.25989a52296d17b2b572...                   correct: no damage                                  nothing             0           0      0             0       0
+182  IMG_9221_JPG.rf.9c3113750390e03447ec...  partly (found 1, missed 0, false 2)       Crack 0.24, Crack 0.23, Crack 0.19             3           1      1             2       0
+183  IMG_9224_JPG.rf.590a3a1529b19279ccff...                               MISSED                                  nothing             0           1      0             0       1
+184  IMG_9227_JPG.rf.1e01cbbefba7b472c99a...  partly (found 1, missed 1, false 1)                   Crack 0.35, Crack 0.35             2           2      1             1       1
+185  IMG_9230_JPG.rf.580afda9b5943f59571a...                            all found                               Crack 0.46             1           1      1             0       0
+186  IMG_9234_JPG.rf.03467ba553e605dfd1d4...                   correct: no damage                                  nothing             0           0      0             0       0
+187  IMG_9237_JPG.rf.59af6929d1afa610b47f...                            all found                               Crack 0.76             1           1      1             0       0
+188  IMG_9238_JPG.rf.f5bc7682fc979dd02ca3...  partly (found 1, missed 0, false 2)       Crack 0.27, Crack 0.16, Crack 0.15             3           1      1             2       0
+189  IMG_9240_JPG.rf.7c4e9188f1497385712f...  partly (found 1, missed 0, false 1)                   Crack 0.70, Crack 0.24             2           1      1             1       0
+190  IMG_9241_JPG.rf.580e32a8376cce997a99...  partly (found 1, missed 0, false 2)       Crack 0.52, Crack 0.21, Crack 0.13             3           1      1             2       0
+191  IMG_9242_JPG.rf.1e2bf04b4c337e0c5b15...  partly (found 1, missed 0, false 2)       Crack 0.57, Crack 0.52, Crack 0.15             3           1      1             2       0
+192  IMG_9244_JPG.rf.4aebdf6f8bac0e499059...  partly (found 1, missed 0, false 2)       Crack 0.48, Crack 0.36, Crack 0.14             3           1      1             2       0
+193  IMG_9245_JPG.rf.6181829bd308b51a08a9...  partly (found 1, missed 0, false 1)                   Crack 0.58, Crack 0.19             2           1      1             1       0
+194  IMG_9250_JPG.rf.1fe164b8eeddd7b4efac...                   correct: no damage                                  nothing             0           0      0             0       0
+195  IMG_9261_JPG.rf.a84f3c589c24aad77940...                   correct: no damage                                  nothing             0           0      0             0       0
+196  IMG_9263_JPG.rf.ff7206c3ba8613e5ecde...                            all found                               Crack 0.83             1           1      1             0       0
+197  IMG_9267_JPG.rf.f03da4f3f9ab53db8a31...                   correct: no damage                                  nothing             0           0      0             0       0
+198  P_JPG.rf.3f2e971eb576d5ffea4deac1d20...                            all found                               Crack 0.29             1           1      1             0       0
+199  c68662c04adcb397fef4c9d51ebcbcf2_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+200  c8567e24bd5c0a9734ce69b6c8ce66ad_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+201  c998fee13a50cc61d9298f45ce2541fd_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+202  cc070ed1148fef2de4416db60b01ee95_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+203  ffdbbc2f9afb28c2741739f868c88670_jpg...                   correct: no damage                                  nothing             0           0      0             0       0
+204  photo_13_2024-11-30_14-31-00_jpg.rf....                   correct: no damage                                  nothing             0           0      0             0       0
+205  photo_14_2024-11-29_18-46-15_jpg.rf....                   correct: no damage                                  nothing             0           0      0             0       0
+206  photo_18_2024-11-30_14-31-00_jpg.rf....                   correct: no damage                                  nothing             0           0      0             0       0
+207  photo_1_2024-10-27_19-28-30_jpg.rf.4...  partly (found 0, missed 1, false 1)                                 Rut 0.65             1           1      0             1       1
+208  photo_1_2024-11-29_14-59-12_jpg.rf.f...                   correct: no damage                                  nothing             0           0      0             0       0
+209  photo_2024-11-29_14-49-30_jpg.rf.88f...                   correct: no damage                                  nothing             0           0      0             0       0
+210  photo_21_2024-11-30_14-31-00_jpg.rf....                   correct: no damage                                  nothing             0           0      0             0       0
+211  photo_23_2024-11-29_18-46-15_jpg.rf....                          FALSE ALARM                               Crack 0.42             1           0      0             1       0
+212  photo_2_2024-11-29_18-46-15_jpg.rf.1...                   correct: no damage                                  nothing             0           0      0             0       0
+213  photo_3_2024-10-27_19-28-30_jpg.rf.b...  partly (found 1, missed 0, false 1)                   Crack 0.44, Crack 0.19             2           1      1             1       0
+214  photo_3_2024-11-29_18-46-15_jpg.rf.d...                          FALSE ALARM                               Crack 0.17             1           0      0             1       0
+215  photo_3_2024-11-30_14-47-57_jpg.rf.5...                   correct: no damage                                  nothing             0           0      0             0       0
+216  photo_6_2024-11-29_18-46-15_jpg.rf.9...                   correct: no damage                                  nothing             0           0      0             0       0
+
+NOTES
+  - No training, no tuning on these photos: the fine-tuned model and its thresholds (chosen on the fine-tuning VALIDATION photos) were only APPLIED.
+  - Photos that were used for fine-tuning (train / validation, by file name or source name) are left out, unless --keep-seen was given.
+  - Label set 'local': labels are the local classes Crack / Pothole / Rut.
+  - 'original (merged)' = model/final_model/best.pt with its own thresholds, D00 / D10 / D20 merged into Crack (NMS), D40 = Pothole. It has no Rut class: its Rut recall is 0 by design; compare 'macro (Crack + Pothole)'.
+  - Solid coloured boxes = fine-tuned detections above the thresholds; white dashed = your labels.
+  - Pictures are in /content/e4ft_output_test (NOT in the repository: it is public).
+  - Small test sets give noisy numbers; a class with few real boxes has an unreliable precision / recall.

@@ -1,0 +1,8 @@
+,value
+photos,217
+photos with damage detected,135
+photos with NO damage detected,82
+photos WITH damage (labels),144
+...of which at least one damage found,105
+photos WITHOUT damage (labels),73
+...of which the model raised a false alarm,7
