@@ -146,7 +146,6 @@ _(fill in from `experiments/*/results/results.txt`, `fine-tuning/final_model/res
 | E3 augmentation | 30° rotation reduced mAP@0.5 from 0.523 to 0.474 |
 | E6 YOLO generations | YOLO26n led the five nano models with mAP@0.5 0.523 and mAP@0.5:0.95 0.293; it had 2.535M parameters and 5.450 MB weights. |
 | Final model and thresholds | mAP@0.5 = 0.591; mAP@0.5:0.95 = 0.336 |
-| E4 external images (final model) | |
 | E5 duplicate candidates | ResNet50 Recall@1 = 0.923; MRR = 0.953|
 | E6-7:  External evaluation | Original model macro F1 = 0.019 on 28 images and 0.055 on SaudiRD |
 | Local fine-tuning | Shared-class macro F1 on 217 images increased from 0.170 → 0.495|
