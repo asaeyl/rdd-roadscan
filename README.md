@@ -141,15 +141,15 @@ _(fill in from `experiments/*/results/results.txt`, `fine-tuning/final_model/res
 
 | Experiment | Main finding |
 |---|---|
-| E1 baseline vs detector | |
-| E2 size / resolution | |
-| E3 augmentation | |
-| E6 YOLO generations | |
-| Final model and thresholds | |
+| E1 baseline vs detector | ResNet-18 mean AP = 0.900; YOLO = 0.889: YOLO box mAP@0.5 = 0.526 |
+| E2 size / resolution | YOLO26s 640 achieved mAP@0.5:0.95 = 0.310 with 304.8 ms/image |
+| E3 augmentation | 30° rotation reduced mAP@0.5 from 0.523 to 0.474 |
+| E6 YOLO generations | YOLO26n led the five nano models with mAP@0.5 0.523 and mAP@0.5:0.95 0.293; it had 2.535M parameters and 5.450 MB weights. |
+| Final model and thresholds | mAP@0.5 = 0.591; mAP@0.5:0.95 = 0.336 |
 | E4 external images (final model) | |
-| E5 duplicate candidates | |
-| Fine-tuning (Set 2, 217 Saudi photos) | |
-| Fine-tuned model on Set 1 (28 team photos, old classes) | |
+| E5 duplicate candidates | ResNet50 Recall@1 = 0.923; MRR = 0.953|
+| E6-7:  External evaluation | Original model macro F1 = 0.019 on 28 images and 0.055 on SaudiRD |
+| Local fine-tuning | Shared-class macro F1 on 217 images increased from 0.170 → 0.495|
 
 ## Limitations and future work
 * The subset is balanced, not the natural class distribution (cracks dominate in reality).
