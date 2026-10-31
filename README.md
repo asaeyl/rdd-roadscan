@@ -1,13 +1,11 @@
-# RoadScan – road-damage detection and report triage (Track A)
-
+# RoadScan – Road Damage Intelligence for Municipalities
 
 ## Problem and motivation
 Municipalities receive many citizen reports of road damage, often several for the same pothole, and have no consistent way
 to decide what to repair first. This repository contains the data pipeline and the experiments for the detector part:
 which damage is in a photo, where it is, and how it compares with a simple classifier baseline.
 It also contains the **final model** with its confidence thresholds, an **external evaluation** on photos from other sources,
-a **duplicate-candidate pilot** (can the same damage be found again?), a **fine-tuning** on local Saudi photos, and a small
-**Streamlit demo app**.
+a **duplicate-candidate pilot**, a **fine-tuning** on local Saudi photos, and a **Streamlit demo app**.
 
 ## Data
 * **RDD2022** (Kaggle copy `aliabdelmenam/rdd-2022`), classes **D00, D10, D20, D40**.
@@ -36,9 +34,9 @@ only numbers (xlsx, txt, csv, charts without photos) are committed.
 | 2 | D20 – alligator crack | Rut |
 | 3 | D40 – pothole | – |
 
-Reading Saudi labels as RDD labels (or the other way round) gives numbers that look real but are wrong. Every script that reads
+Reading Saudi labels as RDD labels gives numbers that look real but are wrong. Every script that reads
 labels therefore checks the label set. To compare the two models fairly, the final model's classes are merged:
-**D00 + D10 + D20 → Crack, D40 → Pothole** (duplicate boxes on one crack removed by NMS). The final model has no Rut class.
+**D00 + D10 + D20 → Crack, D40 → Pothole**. The final model has no Rut class.
 
 ## Repository layout
 ```
@@ -124,20 +122,17 @@ python more_experment/E4_local_photos/run.py --local-dir /content/set1_photos --
 ```bash
 streamlit run app/app.py
 ```
-The app uses `model/final_model/best.pt` and the thresholds in its `artifact.json` (image size and one confidence threshold per damage type).
+The app uses `fine-tuning/final_model/best.pt` and the thresholds in its `artifact.json` (image size and one confidence threshold per damage type).
 It is a research prototype: the suggested priority levels are a simple heuristic on damage type and box size, **not** a verified safety assessment.
-The app does **not** use the fine-tuned model yet (different classes).
 Streamlit Cloud needs `packages.txt` in the repository root (`libgl1`, `libglib2.0-0`) and `app/requirements.txt`; choose Python 3.12 or 3.13 when deploying.
 
 ## What is identical in all experiments, and what differs
 Identical: split, image size 640, batch size 16, 20 epochs, seed, metrics, thresholds chosen on validation only, CPU timing machine.
 Differs on purpose: E1 – the labels used (image vs boxes); E2 – model size and image size; E3 – one augmentation setting per run; E6 – the YOLO generation.
-E2 and E3 re-use the E1 detector for the "nano / 640 / default augmentation" run instead of training it again.
 E4 and E5 train nothing: E4 only applies the final model to external photos, E5 only compares ready-made image embeddings.
 The fine-tuning keeps every setting of the final model; it changes the data (local photos), the classes (Crack, Pothole, Rut) and the starting weights (`best.pt`).
 
 ## Results summary
-_(fill in from `experiments/*/results/results.txt`, `fine-tuning/final_model/results.xlsx` and `more_experment/E4_local_photos/*/result/` after the runs)_
 
 | Experiment | Main finding |
 |---|---|
@@ -152,7 +147,7 @@ _(fill in from `experiments/*/results/results.txt`, `fine-tuning/final_model/res
 
 ## Limitations and future work
 * The subset is balanced, not the natural class distribution (cracks dominate in reality).
-* The external sets are small (28 and 217 photos; the 123-photo fine-tuning test has about 19 pothole boxes): per-class precision and recall can change a lot with one photo.
+* The external sets are small (28 and 217 photos).
 * The final model and the fine-tuned model use **different class sets** (D00 / D10 / D20 / D40 vs Crack / Pothole / Rut). Merging D00, D10 and D20 into Crack is a simplification, and the final model cannot detect Rut at all, so comparisons are made on Crack and Pothole.
 * Label styles differ between datasets (for example one large box around a cracked area vs several small boxes); thin cracks easily fall below the overlap threshold even when they are found.
-* Fine-tuning on Saudi photos can improve results on similar photos and reduce results on others (Set 1 checks this); Set 2 results are likely optimistic if photos come from the same roads as the training photos.
+* Fine-tuning on Saudi photos can improve results on similar photos and reduce results on others.
